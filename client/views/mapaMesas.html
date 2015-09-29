@@ -5,7 +5,7 @@
         <div class="col-md-6">
                   {{#each geraMapaMesas}}
                     <div class="col-sm-2 mesa">
-    					<input type="button" class="btn btn-block {{estado}} {{selectedEstado}}" name="{{numero}}" value="{{numero}}">
+    					<input type="button" class="btn btn-block {{estado}}"  data-toggle="modal" data-target="#{{modal}}" name="{{numero}}" value="{{numero}}">
                     </div>
                   {{/each}}
         </div>
@@ -13,5 +13,37 @@
         <div class="col-md-6">
         
         </div>
+    </div>
+
+    <!-- Model de venda "-->    
+    <div id="aberturaMesa" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Abrir Mesa</h4>
+          </div>
+          <form class="form-modal">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="codcodGarcomAtend">CÓD GARÇOM: </label>
+                        <input type="text" required="required" class="custom-input form-control" id="codGarcomAtend"/>
+                    </div> 
+                    <div class="form-group">
+                        <label for="qtdPessoas">QUANT. PESSOAS NA MESA: </label>
+                        <input type="text" class="custom-input form-control" id="qtdPessoas" />
+                    </div>                     
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit " class="btn btn-default btn-primary" data-dismiss="modal">Abrir</button>
+                    <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cancel</button>
+                  </div>
+            </form>
+        </div>
+
+      </div>
     </div>
 </template>

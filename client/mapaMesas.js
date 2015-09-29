@@ -1,6 +1,7 @@
 var estadoLivre= "btn-success";
 var estadoOcupado = "btn-primary";
 var estadoBoqueado = "btn-danger";
+var typeModal=['aberturaMesa','incluirProduto'];
 
 
 Meteor.subscribe('MapaMesas');
@@ -10,26 +11,28 @@ Template.mapaMesas.helpers({
 	'geraMapaMesas': function (){
 		return MapaMesas.find();
 	},
-	'selectedEstado':function(){
-		var mesaId = this._id;
-		var selectedMesa = Session.get('selectedMesa');
-		if(mesaId==selectedMesa){
-			if(this.estado==estadoLivre){
-				Meteor.call('editarEstadoMesa', mesaId,estadoOcupado);
-			}
+	'modal':function(){
+		if(this.estado==estadoLivre){
+			return typeModal[0];
 		}
-	}	
+	}
 });
 
 Template.mapaMesas.events({
 	'click .mesa':function(){
 		var mesaId = this._id;
-		Session.set('selectedMesa',mesaId);		
-		if(this.estado==estadoLivre){
-			console.log("Insera seus dados");
+		//Session.set('selectedMesa',mesaId);		
+		if(this.estado==estadoLivre){		
+			Meteor.call('editarEstadoMesa', mesaId,estadoOcupado);
 		}
-		if(this.estado==estadoOcupado){
-			console.log("Insera seus dados vendas");
-		}
+		/*else if(this.estado==estadoOcupado){
+			Meteor.call('editarEstadoMesa', mesaId,estadoBoqueado);
+		}else{
+			Meteor.call('editarEstadoMesa', mesaId,estadoLivre);
+		}*/
+	},
+	'submit form':function(event){
+		event.preventDefaul();
+		console.log("abriu mesa");
 	}
 });
