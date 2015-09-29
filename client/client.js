@@ -1,5 +1,6 @@
+//teste git alteraçoes
 Meteor.subscribe('Produtos');
-
+var testegit = "a";
 //Temos que criar um form para o cadastro de categorias
 var Categorias = [new Categoria("BAR"),new Categoria("COZINHA"),new Categoria("CHURRASQUEIRA")];
 
