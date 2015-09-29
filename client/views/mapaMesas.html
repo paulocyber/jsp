@@ -1,0 +1,17 @@
+<template name="mapaMesas">
+	  <div class="container theme-showcase" role="main">
+        <h4 class="text-center">MAPA DE MESAS</h4>
+            <!-- Primeiro Coluna -->
+        <div class="col-md-6">
+                  {{#each geraMapaMesas}}
+                    <div class="col-sm-2 mesa">
+    					<input type="button" class="btn btn-block {{estado}} {{selectedEstado}}" name="{{numero}}" value="{{numero}}">
+                    </div>
+                  {{/each}}
+        </div>
+        <!-- Segunda Coluna -->
+        <div class="col-md-6">
+        
+        </div>
+    </div>
+</template>

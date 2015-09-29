@@ -1,0 +1,13 @@
+body{
+	background-color: #EFEFEF;	
+}
+.container{
+	background-color: #FFF;
+}
+.caixa{
+
+	background-color: #FFFFFC !important;
+}
+.mesa{
+	margin-bottom: 5px;
+}

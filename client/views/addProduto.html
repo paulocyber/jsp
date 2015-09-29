@@ -1,0 +1,57 @@
+<template name="addProduto">
+  <div class="container theme-showcase" role="main">
+        <h4 class="text-center">CADASTRO DE PRODUTOS</h4>
+        <form>
+            <!-- Primeiro Coluna -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="codProd">CÓDIGO: </label>
+                <input type="text" required="required" class="custom-input form-control" id="codProd"/>
+            </div> 
+            <div class="form-group">
+                <label for="refProd">REFERÊNCIA: </label>
+                <input type="text" class="custom-input form-control" id="refProd" />
+            </div> 
+            <div class="form-group">
+                <label for="desProd">DESCRIÇÃO: </label>
+                <input type="text" required="required" class="custom-input form-control" id="desProd"/>
+            </div>                                 
+            <div class="form-group">
+                <label for="undProd">UNIDADE: </label>
+                <input type="text" required="required" class="custom-input form-control" id="undProd"/>
+            </div>       
+            <div class="form-group">
+                <label for="cusProd">CUSTO: </label>
+                <input type="number" step=0.01 required="required" class="custom-input form-control" id="cusProd"/>
+            </div>            
+        </div>
+        <!-- Segunda Coluna -->
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="preProd">PREÇO: </label>
+                <input type="number" step=0.01 required="required" class="custom-input form-control" id="preProd"/>
+            </div>
+             <div class="form-group">
+                <label for="marProd">MARGEM: </label>
+                <input type="number" required="required" class="custom-input form-control" id="marProd"/>
+            </div>
+            <div class="form-group">
+                <label for="catProd">CATEGORIA: </label><br/>
+                <select class="form-control" id="catProd">
+                    {{#each listCategoria}}
+                        <option value="{{nome}}">{{nome}}</option>
+                    {{/each}}
+                </select>
+            </div>
+    
+            <div class="form-group">
+                 <label for="subProd">SUBCATEGORIA: </label> <br/>
+                 <input type="text" class="custom-input form-control" id="subProd"/>
+            </div>                        
+        </div>
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-default" value="Adicionar Produto" /><input type="submit" class="btn btn-primary" value="Editar Produto"> 
+        </div>
+    </form>
+    </div>
+</template>
