@@ -2,17 +2,18 @@
 //Plano báscio = 3 categorias(maxCat); 30 mesas(maxMesas); 5 garçons(maxGarcons); 100 produtos cadastrados(maxQtProdutos)
 
 var configPlanoBasic = new PlanosIrest(3,30,5,100);
+var estadoLivre = "btn-success"; //Botao verde do bootstrap
 
 
 function gerarMesas(qtMesas){
   for(var i=0;i<qtMesas;i++){
-    MapaMesas.insert(new Mesa((i+1),"btn-success"));
+    MapaMesas.insert(new Mesa((i+1), estadoLivre));
   }
 };
 
 function zerarMesas(qtMesas){
   for(var i=0;i<qtMesas;i++){
-    MapaMesas.update({},{$set:{estado: "btn-success"}},{multi:true});
+    MapaMesas.update({},{$set:{estado: estadoLivre}},{multi:true});
   }
 };
 
@@ -54,8 +55,8 @@ Meteor.methods({
     'desativarProduto': function(produtoId){
       Produtos.update({_id: produtoId},{$set:{atiProd: false}});
     },
-    'editMesa':function(mesaId){
-      MapaMesas.update({_id: mesaId},{$set:{estado: "btn-primary"}});
+    'editarEstadoMesa':function(mesaId,estado){
+      MapaMesas.update({_id: mesaId},{$set:{estado: estado}});
     }
         
     /*
