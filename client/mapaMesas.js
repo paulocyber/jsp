@@ -3,7 +3,6 @@ var estadoOcupado = "btn-primary";
 var estadoBoqueado = "btn-danger";
 var typeModal=['aberturaMesa','incluirProduto'];
 
-
 Meteor.subscribe('MapaMesas');
 
 //Helpers e Events do template mapaMesas
@@ -16,6 +15,7 @@ Template.mapaMesas.helpers({
 			return typeModal[0];
 		}
 	}
+
 });
 
 Template.mapaMesas.events({
@@ -23,7 +23,7 @@ Template.mapaMesas.events({
 		var mesaId = this._id;
 		//Session.set('selectedMesa',mesaId);		
 		if(this.estado==estadoLivre){		
-			Meteor.call('editarEstadoMesa', mesaId,estadoOcupado);
+			
 		}
 		/*else if(this.estado==estadoOcupado){
 			Meteor.call('editarEstadoMesa', mesaId,estadoBoqueado);
@@ -33,6 +33,7 @@ Template.mapaMesas.events({
 	},
 	'submit form':function(event){
 		event.preventDefaul();
-		console.log("abriu mesa");
+		Meteor.call('editarEstadoMesa', mesaId,estadoOcupado);
+		return false;
 	}
 });
