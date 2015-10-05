@@ -11,3 +11,6 @@ body{
 .mesa{
 	margin-bottom: 5px;
 }
+.message-erro{
+	display: none;
+}

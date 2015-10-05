@@ -1,0 +1,29 @@
+<template name="addFuncionario">
+  <div class="container theme-showcase" role="main">
+        <h4 class="text-center">CADASTRO DE FUNCIONARIOS</h4>
+    <form>
+            <!-- Primeiro Coluna -->
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="codFunc">CÓDIGO: </label>
+                <input type="text" required="required" class="custom-input form-control" id="codFunc"/>
+            </div> 
+            <div class="form-group">
+                <label for="nomFunc">NOME: </label>
+                <input type="text" class="custom-input form-control" id="nomFunc" />
+            </div>                      
+        </div>
+            
+        <!-- Segunda Coluna -->
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="funcaoFunc">FUNÇÃO: </label>
+                <input type="text" required="required" class="custom-input form-control" id="funcaoFunc"/>
+            </div>   
+            </div>
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-default" value="Adicionar Produto" /><!--<input type="submit" class="btn btn-primary" value="Editar Produto"> -->
+            </div>
+    </form>
+    </div>
+</template>
