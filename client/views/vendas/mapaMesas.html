@@ -11,10 +11,19 @@
         </div>
         <!-- Segunda Coluna -->
         <div class="col-md-6">
-        
+          {{> historico}}
         </div>
     </div>
 
+    {{> modalAbrirMesa}}
+    {{> modalIncluirProduto}}
+    {{> modalBloqueioMesa}}
+    {{> modalObservacoes}}
+
+</template>
+
+
+<template name='modalAbrirMesa'>
     <!-- Model de venda "-->    
     <div id="aberturaMesa" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -25,7 +34,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Abrir Mesa</h4>
           </div>
-          <form class="form-modal">
+          <form class="form-modal abrir">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="codGarcomAtend">CÓD GARÇOM: </label>
@@ -43,10 +52,110 @@
                   </div>
             </form>
         </div>
-
       </div>
     </div>
+</template>
+
+<template name='modalIncluirProduto'>
+    <!-- Model de venda "-->    
+    <div id="incluirProduto" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Incluir Produto</h4>
+          </div>
+          <form class="form-modal">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="codProd">CÓD PROD: </label>
+                        <input type="text" required="required" class="custom-input form-control" id="codProd"/>
+                        <label for="desProd">DESCRIÇÃO: </label>
+                        <input type="text" class="custom-input form-control" id="desProd" disabled="true" />
+                         <label for="qtdProdItem">QUANTIDADE: </label>
+                        <input type="number" class="custom-input form-control" id="qtdProdItem"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="obsItem">OBSERVAÇÃO: </label><br/>
+                        <select class="form-control" id="obsItem">
+                            {{#each listObservacao}}
+                                <option value="{{nome}}">{{nome}}</option>
+                            {{/each}}
+                        </select><a id="addObservacao" href="#">Nova Observação</a>
+                    </div>                  
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-default btn-primary">Incluir</button>
+                    <button type="button" id="bloqueio" class="btn btn-default btn-danger">Bloquear</button>
+                  </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</template>
 
 
+<template name='modalBloqueioMesa'>
+    <!-- Model de venda "-->    
+    <div id="bloqueioMesa" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Bloqueio de Mesa</h4>
+          </div>
+          <form class="form-modal">
+                <div class="modal-body">
+                               
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="reabrir" class="btn btn-default btn-primary">Reabrir</button>
+                    <button type="button" id="encerrar" class="btn btn-default btn-danger">Encerrar</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</template>
+
+<template name='historico'>
+    {{#if histMesa}}
+        <h4>Historico da Mesa {{histMesa}}</h4>
+    {{/if}}
     
+</template>
+
+<template name="modalObservacoes">
+    <div id="addObservacaoModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Cadastro de Observações</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-modal" id="formCat">
+                <div class="form-group">
+                    <label for="nomeObs">NOME: </label>
+                    <input type="text" required="required" class="custom-input form-control" id="nomeObs"/><span class="bg-danger text-danger message-erro">Observação já cadastrada</span>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" id="saveObs" class="btn btn-default btn-primary">Save</button>
+                    <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+           </div>
+
+        </div>
+      </div>
+    </div>
 </template>
