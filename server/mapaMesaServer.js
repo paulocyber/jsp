@@ -12,8 +12,6 @@ Meteor.publish('Vendas',function(){
 Meteor.methods({
   'editarEstadoMesa':function(mesaId,estado){
       MapaMesas.update({_id: mesaId},{$set:{estado: estado}});
-      var mesa = MapaMesas.find({_id: mesaId});
-      console.log(mesa);
     }
 });
 

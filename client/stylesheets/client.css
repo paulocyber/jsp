@@ -1,5 +1,6 @@
 body{
 	background-color: #EFEFEF;	
+	font-family: Verdana,Arial,sans-serif;
 }
 .container{
 	background-color: #FFF;
@@ -12,5 +13,13 @@ body{
 	margin-bottom: 5px;
 }
 .message-erro{
+	display: none;
+}
+#nomeGarcom{
+	color: #76A0ED;
+}
+
+
+#message-success,#message-info,#message-warning,#message-danger{
 	display: none;
 }

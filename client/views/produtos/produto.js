@@ -61,10 +61,10 @@ Template.addProduto.events({
 		atribuirProduto();
 
 		Meteor.call('adicionarProduto', atribuirProduto(), function(error, result) {
-			Session.set('messageCall', result);
+			Session.set('message', result);
 		});
 
-		message = Session.get('messageCall');
+		mensagem('typeMessage', mens)
 
 		zeraCamposProduto();
 	},

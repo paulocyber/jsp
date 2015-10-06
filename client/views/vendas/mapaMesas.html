@@ -37,7 +37,7 @@
           <form class="form-modal abrir">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="codGarcomAtend">CÓD GARÇOM: </label>
+                        <label for="codGarcomAtend">CÓD GARÇOM: </label><span id="nomeGarcom"></span>
                         <input type="text" required="required" class="custom-input form-control" id="codGarcomAtend"/>
                     </div> 
                     <div class="form-group">
@@ -126,7 +126,7 @@
 
 <template name='historico'>
     {{#if histMesa}}
-        <h4>Historico da Mesa {{histMesa}}</h4>
+        <h4>Historico da Mesa</h4>
     {{/if}}
     
 </template>

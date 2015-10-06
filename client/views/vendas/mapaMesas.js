@@ -5,6 +5,7 @@ var estadoBoqueado = "btn-danger";
 Meteor.subscribe('MapaMesas');
 Meteor.subscribe('Observacoes');
 Meteor.subscribe('Vendas');
+Meteor.subscribe('Funcionarios');
 
 //Helpers e Events do template mapaMesas
 Template.mapaMesas.helpers({
@@ -22,6 +23,9 @@ Template.mapaMesas.events({
 
 		if (this.estado == estadoLivre) {
 			Session.set('estadoMesa', mesaEstado);
+			$('#codGarcomAtend').val('');
+			$('#qtdPessoas').val('');
+			$('#nomeGarcom').text('');
 			$('#aberturaMesa').modal('show');
 		} else if (this.estado == estadoOcupado) {
 			Session.set('estadoMesa', mesaEstado);
@@ -47,8 +51,6 @@ Template.mapaMesas.events({
 		}else{
 			$('#bloqueioMesa').modal('hide');
 		}
-		$('#codGarcomAtend').val('');
-		$('#qtdPessoas').val('');
 	},
 	'click [id=bloqueio]':function(){
 		var mesaId = Session.get('selectedMesa');
@@ -71,11 +73,26 @@ Template.mapaMesas.events({
 	}
 });
 
+
+
+
 Template.modalIncluirProduto.helpers({
 	'listObservacao':function(){
 		return Observacoes.find();
 	}
 });
+
+Template.historico.helpers({
+
+	'histMesa': function() {
+
+		var id = Session.get('selectedMesa');
+
+		return id;
+	}
+
+});
+
 Template.modalObservacoes.events({
 	'click [id=saveObs]': function(event) {
 		event.preventDefault();
@@ -96,14 +113,12 @@ Template.modalObservacoes.events({
 
 	}
 });
+Template.modalAbrirMesa.events({
+	'keyup [id=codGarcomAtend]':function(){
+		var codFunc = $('#codGarcomAtend').val();
+		var funcionario = Funcionarios.findOne({codFunc: codFunc});
+		var nomFunc = funcionario && funcionario.nomFunc;
 
-Template.historico.helpers({
-
-	'histMesa': function() {
-
-		var id = Session.get('selectedMesa');
-
-		return id;
+		$('#nomeGarcom').text(nomFunc);
 	}
-
 });
