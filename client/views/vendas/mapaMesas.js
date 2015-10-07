@@ -23,9 +23,11 @@ Template.mapaMesas.events({
 
 		if (this.estado == estadoLivre) {
 			Session.set('estadoMesa', mesaEstado);
+
 			$('#codGarcomAtend').val('');
 			$('#qtdPessoas').val('');
 			$('#nomeGarcom').text('');
+
 			$('#aberturaMesa').modal('show');
 		} else if (this.estado == estadoOcupado) {
 			Session.set('estadoMesa', mesaEstado);
@@ -119,6 +121,9 @@ Template.modalAbrirMesa.events({
 		var funcionario = Funcionarios.findOne({codFunc: codFunc});
 		var nomFunc = funcionario && funcionario.nomFunc;
 
-		$('#nomeGarcom').text(nomFunc);
+		if(nomFunc)
+			$('#nomeGarcom').text(nomFunc);
+		else
+			$('#nomeGarcom').text('');
 	}
 });

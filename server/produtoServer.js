@@ -6,22 +6,17 @@ Meteor.methods({
   'adicionarProduto': function(data) {
     //var currentUserId = Meteor.userId();
 
-    if (Produtos.find().count() == configPlanoBasic.maxQtdProdutos) {
-      return 'Quantidade de Produtos no Plano Basico no limite, faça upgrade do seu Plano';
+    if (Produtos.find().count() == configPlanoBasic.maxQtdProdutos) {      
+        return  new Mensage('atencao','Quantidade de Produtos no Plano Basico no limite, faça upgrade do seu Plano');
     } else {
       Produtos.insert(data);
-      return 'Produto adicionado com Sucesso!';
+        return new Mensage('sucesso','Produto adicionado com Sucesso!');
     }
   },
 
   'desativarProduto': function(idProd) {
-    Produtos.update({
-      _id: idProd
-    }, {
-      $set: {
-        atiProd: false
-      }
-    });
+      Produtos.update({_id: idProd}, {$set: {atiProd: false}});
+      return new Mensage('aviso','Produto deletado!!!');
   }
 
 

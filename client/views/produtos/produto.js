@@ -2,9 +2,6 @@
 Meteor.subscribe('Produtos');
 Meteor.subscribe('Categorias');
 
-message = '';
-
-
 //Função comuns 
 function atribuirProduto() {
 	var prod = new Produto();
@@ -46,12 +43,6 @@ function zeraCamposProduto() {
 Template.addProduto.helpers({
 	'listCategoria': function() {
 		return Categorias.find();
-	},
-	'titleModal': function() {
-		return titulo;
-	},
-	'corpoModal': function() {
-		return message;
 	}
 });
 
@@ -61,10 +52,8 @@ Template.addProduto.events({
 		atribuirProduto();
 
 		Meteor.call('adicionarProduto', atribuirProduto(), function(error, result) {
-			Session.set('message', result);
+			mensagem(result);
 		});
-
-		mensagem('typeMessage', mens)
 
 		zeraCamposProduto();
 	},
@@ -116,7 +105,9 @@ Template.listProduto.events({
 		var idProd = this._id;
 		var confirm = window.confirm('Tem certeza que deseja DELETAR?');
 		if (confirm) {
-			Meteor.call('desativarProduto', idProd);
+			Meteor.call('desativarProduto', idProd, function(error, result){
+				mensagem(result);
+			});
 		}
 	}
 });
