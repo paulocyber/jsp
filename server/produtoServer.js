@@ -2,6 +2,12 @@ Meteor.publish('Produtos', function() {
   return Produtos.find()
 });
 
+// Meteor.publish('ProdutosAtivos', function() {
+//   return Produtos.find({atiProd: true})
+// });
+
+
+
 Meteor.methods({
   'adicionarProduto': function(data) {
     //var currentUserId = Meteor.userId();

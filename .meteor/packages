@@ -24,3 +24,4 @@ mrt:exports
 accounts-password
 accounts-ui
 iron:router
+stylus
