@@ -20,7 +20,7 @@ Meteor.methods({
   	  data.horAberMesa = new Data().getTime();
   	  data.datVenda = new Data();
   	  data.atiVenda = true;
-      MapaMesas.inser(data);
+      MapaMesas.insert(data);
       return "Venda iniciada com sucesso!";
     }
 });
