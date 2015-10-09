@@ -13,7 +13,7 @@ Meteor.methods({
     //var currentUserId = Meteor.userId();
 
     if (Produtos.find().count() == configPlanoBasic.maxQtdProdutos) {      
-        return  new Mensage('atencao','Quantidade de Produtos no Plano Basico no limite, faça upgrade do seu Plano');
+        return  new Mensage('atencao','Quantidade de Produtos no Plano Basico no limite, faça upgrade do seu Plano!');
     } else {
       Produtos.insert(data);
         return new Mensage('sucesso','Produto adicionado com Sucesso!');

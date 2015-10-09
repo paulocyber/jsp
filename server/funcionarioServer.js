@@ -7,10 +7,10 @@ Meteor.methods({
       //var currentUserId = Meteor.userId();
 
       if(Funcionarios.find().count()==configPlanoBasic.maxFuncionarios){
-        return 'Quantidade de Funcionarios no Plano Basico no limite, faça upgrade do seu Plano';
+        return new Mensage('sucesso','Quantidade de funcionários no Plano Basico no limite, faça upgrade do seu Plano!');
       }else{
         Funcionarios.insert(data);  
-        return 'Produto adicionado com Sucesso!';
+        return new Mensage('sucesso','Funcionário adicionado com Sucesso!');
       }      
     },
     

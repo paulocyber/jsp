@@ -1,3 +1,4 @@
+//posicionar o mouse no primeiro input da tela
 focusInput = function(){
 	$('input:text:visible:first').focus();	
 }
@@ -5,7 +6,7 @@ var estadoLivre = "btn-success";
 var estadoOcupado = "btn-primary";
 var estadoBoqueado = "btn-danger";
 
-var mesa = new Mesa();
+
 
 Meteor.subscribe('MapaMesas');
 Meteor.subscribe('Observacoes');
@@ -22,12 +23,13 @@ Template.mapaMesas.helpers({
 });
 
 Template.mapaMesas.events({
-	'click .mesa': function() {		
+	'click .mesa': function() {	
+		var mesa = new Mesa();	
 		mesa._id = 	this._id;
 		mesa.estado = this.estado;
 		mesa.numero = this.numero;
 		Session.set('selectedMesa', mesa);
-
+		
 		if (mesa.estado == estadoLivre) {
 			$('#codGarcomAtend').val('');
 			$('#qtdPessoas').val('');
@@ -35,7 +37,10 @@ Template.mapaMesas.events({
 
 			$('#aberturaMesa').modal('show');
 
+			Session.set('selectedVenda', '');
+
 		} else if (mesa.estado == estadoOcupado) {
+			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
 			$('#incluirProduto').modal('show');
 		}
 		else{
@@ -57,7 +62,9 @@ Template.mapaMesas.events({
 
 		$('#aberturaMesa').modal('hide');
 		Meteor.call('editarEstadoMesa', mesa._id, estadoOcupado);
+		console.log(venda);
 		Meteor.call('iniciarVenda',venda);
+		
 	},
 	'submit #incluir': function(event) {
 		event.preventDefault();
@@ -111,10 +118,7 @@ Template.modalIncluirProduto.helpers({
 Template.historico.helpers({
 
 	'histMesa': function() {
-
-		var id = Session.get('selectedMesa');
-
-		return id;
+		return Session.get('selectedVenda');
 	}
 
 });
@@ -141,6 +145,7 @@ Template.modalObservacoes.events({
   	}
 });
 Template.modalIncluirProduto.events({
+	//ao carregar o modal do bootstrap executar a função
 	'shown.bs.modal #addObservacaoModal': function(){
     	focusInput();
   	}

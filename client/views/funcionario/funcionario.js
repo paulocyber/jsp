@@ -27,7 +27,9 @@ Template.addFuncionario.events({
 	'submit form': function (event) {
 		event.preventDefault();
 	
-		Meteor.call('adicionarFuncionario', atribuirFuncionario());
+		Meteor.call('adicionarFuncionario', atribuirFuncionario(), function(error, result){
+			mensagem(result);
+		});
 
 		zeraCamposFunc();
     }

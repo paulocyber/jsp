@@ -16,17 +16,17 @@ Meteor.methods({
 });
 
 Meteor.methods({
-  'iniciarVenda':function(data){
-  	  data.horAberMesa = new Data().getTime();
-  	  data.datVenda = new Data();
-  	  data.atiVenda = true;
-      MapaMesas.insert(data);
+  'iniciarVenda':function(venda){
+  	  venda.horAberMesa = new Date().getTime();
+  	  venda.datVenda = new Date();
+  	  venda.atiVenda = true;
+      Vendas.insert(venda);
       return "Venda iniciada com sucesso!";
     }
 });
 
 Meteor.methods({
-  'addObservacao':function(data){
-      Observacoes.insert(data);
+  'addObservacao':function(observacao){
+      Observacoes.insert(observacao);
     }
 });
