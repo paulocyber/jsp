@@ -13,6 +13,7 @@ Meteor.subscribe('Observacoes');
 Meteor.subscribe('Vendas');
 Meteor.subscribe('Funcionarios');
 Meteor.subscribe('Produtos');
+Meteor.subscribe('Itens');
 
 //Helpers e Events do template mapaMesas
 Template.mapaMesas.helpers({
@@ -41,6 +42,9 @@ Template.mapaMesas.events({
 
 		} else if (mesa.estado == estadoOcupado) {
 			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
+			Meteor.call('horaServe', function (error, result) {
+				Session.set('horaServe', result);
+			});
 			$('#incluirProduto').modal('show');
 		}
 		else{
@@ -62,14 +66,33 @@ Template.mapaMesas.events({
 
 		$('#aberturaMesa').modal('hide');
 		Meteor.call('editarEstadoMesa', mesa._id, estadoOcupado);
-		console.log(venda);
 		Meteor.call('iniciarVenda',venda);
 		
 	},
 	'submit #incluir': function(event) {
 		event.preventDefault();
-		var mesa = Session.get('selectedMesa');
+		var venda = Session.get('selectedVenda');
 
+		var codProd = $('#codProd').val();
+		var produto = Produtos.findOne({codProd:codProd});
+
+		var obsItem = $('#obsItem').val();
+		var observacao = Observacoes.findOne({nome: obsItem});
+
+		var qtdProdItem = $('#qtdProdItem').val();
+
+
+
+		var item = new Item();
+		item.idVenda= venda._id;
+		item.idProd= produto._id;
+		item.idObsItem = observacao._id;
+		item.qtdProdItem = qtdProdItem;
+		item.vlrTotal = produto.preProd *qtdProdItem; 
+		Meteor.call('incluirProduto', item, function (error, result) {});
+		$('#codProd').val('');
+		$('#desProd').val('');
+		$('#qtdProdItem').val('');
 
 
 	},
@@ -77,17 +100,19 @@ Template.mapaMesas.events({
 	'click #bloqueio':function(){
 		var mesa = Session.get('selectedMesa');
 		$('#incluirProduto').modal('hide');
-		Meteor.call('editarEstadoMesa', mesa._id, estadoBoqueado);
+		Meteor.call('editarEstadoMesa', mesa._id, estadoBoqueado,function (error, result) {});
 	},
 	'click #reabrir':function(){
 		var mesa = Session.get('selectedMesa');
 		$('#bloqueioMesa').modal('hide');
-		Meteor.call('editarEstadoMesa', mesa._id, estadoOcupado);
+		Meteor.call('editarEstadoMesa', mesa._id, estadoOcupado,function (error, result) {});
 	},
 	'click #encerrar':function(){
 		var mesa = Session.get('selectedMesa');
+		var venda = Session.get('selectedVenda');
 		$('#bloqueioMesa').modal('hide');
-		Meteor.call('editarEstadoMesa', mesa._id, estadoLivre);
+		Meteor.call('editarEstadoMesa', mesa._id, estadoLivre,function (error, result) {});
+		Meteor.call('encerrarVenda', venda._id , function (error, result) {});
 	},	
 	'click #addObservacao': function(event) {
 		event.preventDefault();
@@ -113,14 +138,6 @@ Template.modalIncluirProduto.helpers({
 	'listObservacao':function(){
 		return Observacoes.find();
 	}
-});
-
-Template.historico.helpers({
-
-	'histMesa': function() {
-		return Session.get('selectedVenda');
-	}
-
 });
 
 Template.modalObservacoes.events({
@@ -164,4 +181,76 @@ Template.modalAbrirMesa.events({
 	'shown.bs.modal .modal': function(){
     	focusInput();
   }
+});
+
+
+
+formatDate = function(d){
+	var dataBrasil = ""+d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+	return dataBrasil;
+}
+formatHora = function(d){
+	var horaBrasil = ""+d.getHours()+":"+d.getMinutes();
+	return horaBrasil;
+}
+calcPermanencia = function(d){
+	var dataAtual = new Date(Session.get('horaServe'));
+	var hora = dataAtual.getHours() - d.getHours();
+	var minuto = dataAtual.getMinutes() - d.getMinutes();
+	var permanencia = ""+hora+"h "+minuto+"min";
+	return permanencia;
+}
+
+
+
+obterComanda = function(){
+	var venda = Session.get('selectedVenda');
+	var historico = new Historico();
+	if(venda){
+		historico.codGarcomAtend = venda.codGarcomAtend;
+		historico.numeroMesa = venda.numeroMesa;
+		var horAberMesa = venda.horAberMesa;
+		historico.datVenda = formatDate(horAberMesa);
+		var listaItens = Itens.find({idVenda: venda._id});
+
+		if(listaItens){
+		var somaTotalVenda = 0;
+		var i = 1;
+		listaItens.forEach(function (item) {
+			var itemHistorico = new ItemHistorico();
+			itemHistorico.seqItem = i;
+			var produto = Produtos.findOne({_id: item.idProd});
+			if(produto){
+				itemHistorico.desProd = produto.desProd;
+				itemHistorico.preProd = produto.preProd;
+			}
+			itemHistorico.qtdProdItem = item.qtdProdItem;
+			itemHistorico.vlrTotal = item.vlrTotal.toFixed(2);
+			somaTotalVenda += item.vlrTotal;
+			historico.listItens.push(itemHistorico);	
+			i+=1;
+		});
+		historico.vlrTotalVenda = somaTotalVenda.toFixed(2);
+		historico.vlrPorPessoa = somaTotalVenda.toFixed(2) / venda.qtdPessoas;
+		historico.horAberMesa = formatHora(horAberMesa);
+		historico.temPermanencia = calcPermanencia(horAberMesa);
+		historico.textFooter = "iRest - uBasic - Versão 1.00"
+		}
+	}
+
+	return historico;
+}
+
+
+Template.historico.helpers({
+	'hasVendaMesa':function(){
+		var venda = Session.get('selectedVenda');
+		if(venda){
+			return true;
+		}else false;
+	},
+	'histMesa': function() {
+		var historico = obterComanda();
+		return historico;
+	}
 });

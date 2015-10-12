@@ -5,7 +5,7 @@
         <div class="col-md-6">
                   {{#each geraMapaMesas}}
                     <div class="col-sm-2 mesa">
-    					<input type="button" class="btn btn-block {{estado}}" name="{{numero}}" value="{{numero}}">
+    					      <input type="button" class="btn btn-block {{estado}}" name="{{numero}}" value="{{numero}}">
                     </div>
                   {{/each}}
         </div>
@@ -151,10 +151,41 @@
 
 
 <template name='historico'>
-    {{#if histMesa}}
+    {{#if hasVendaMesa}}
         <h4 class="text-center">Historico da Mesa</h4>
-        <span for="codGarcomHist">CÓD GARÇOM:</span><label id="codGarcomHist">{{histMesa.codGarcomAtend}}</label>
-         <span for="codGarcomHist">CÓD GARÇOM:</span><label id="codGarcomHist">{{histMesa.codGarcomAtend}}</label>
+        <span for="codGarcomHist">CÓD GARÇOM:    </span><label id="codGarcomHist">{{histMesa.codGarcomAtend}}</label>
+        <br/>
+         <span for="numMesaHist">NÚMERO MESA:    </span><label id="numMesaHist">{{histMesa.numeroMesa}}</label>
+         <br/>
+         <span for="datVendaHist">DATA:    </span><label id="datVendaHist">{{histMesa.datVenda}}</label>
+         <div class="col-md-12">
+             <table class="table font-10">
+                 <thead>
+                  <tr>
+                <th>Item</th><th>Descrição</th><th>V.Unit.</th><th>Quant.</th><th>V.Total</th>
+                  </tr>
+                </thead>
+                  <tbody>       
+                {{#each histMesa.listItens}}
+                  <tr>
+                    <td>{{seqItem}}</td><td>{{desProd}}</td><td>R$ {{preProd}}</td><td>{{qtdProdItem}}</td><td>R$ {{vlrTotal}}</td>
+                    <td><input type="button" class="btn btn-danger" name="btnCancelarItem" value="Cancelar"></td>
+                  </tr>
+                {{/each}}
+                </tbody>
+            </table>
+            <span for="vlrTotalVenda">VALOR TOTAL:    </span><label id="vlrTotalVenda">R$ {{histMesa.vlrTotalVenda}}</label>
+            <br/>
+            <span for="vlrPorPessoa">VALOR POR PESSOA:    </span><label id="vlrPorPessoa">R$ {{histMesa.vlrPorPessoa}}</label>
+            <br/>
+            <br/>
+            <span for="horAberMesa">HORA DE ENT.:    </span><label id="
+            horAberMesa">{{histMesa.horAberMesa}}</label>
+            <br/>
+            <span for="temPermanencia">PERMANENCIA:    </span><label id="temPermanencia">{{histMesa.temPermanencia}}</label>
+            <br/>
+            <br/>
+            <center><label id="textFooter">{{histMesa.textFooter}}</label></center>
+        </div>
     {{/if}}
-    
 </template>

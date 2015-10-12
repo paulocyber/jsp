@@ -8,6 +8,9 @@ Meteor.publish('Vendas',function(){
     return Vendas.find({atiVenda: true})
   });
 
+Meteor.publish('Itens',function(){
+    return Itens.find();
+  });
 
 Meteor.methods({
   'editarEstadoMesa':function(mesaId,estado){
@@ -16,17 +19,26 @@ Meteor.methods({
 });
 
 Meteor.methods({
-  'iniciarVenda':function(venda){
-  	  venda.horAberMesa = new Date().getTime();
-  	  venda.datVenda = new Date();
-  	  venda.atiVenda = true;
-      Vendas.insert(venda);
+  'iniciarVenda':function(data){      
+  	  data.horAberMesa = new Date();
+  	  data.atiVenda = true;
+      Vendas.insert(data);
       return "Venda iniciada com sucesso!";
+    },
+    'incluirProduto': function(data){
+      data.isCancelado = false;
+      Itens.insert(data);
+    },
+    'encerrarVenda': function(idVenda){
+        Vendas.update({_id: idVenda},{$set:{atiVenda: false}}); 
+    },
+    'horaServe':function(){
+      return new Date();
     }
 });
 
 Meteor.methods({
-  'addObservacao':function(observacao){
-      Observacoes.insert(observacao);
+  'addObservacao':function(data){
+      Observacoes.insert(data);
     }
 });

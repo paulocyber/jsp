@@ -21,3 +21,6 @@ body{
 #message-success,#message-info,#message-warning,#message-danger{
 	display: none;
 }
+.font-10{
+	font-size: 90%;
+}

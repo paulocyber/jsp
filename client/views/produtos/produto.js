@@ -71,7 +71,7 @@ Template.addProduto.events({
 		var cusProd = new Number($('[id=cusProd]').val());
 		var marProd = new Number($('[id=marProd]').val());
 		var preProd = marProd * cusProd / 100 + cusProd;
-		$('[id=preProd]').val(preProd.toFixed(2));
+		$('[id=preProd]').val(preProd.toFixed(1));
 	},
 	'click [id=addCategoria]': function(event) {
 		event.preventDefault();

@@ -1,5 +1,5 @@
 Meteor.publish('Produtos', function() {
-  return Produtos.find()
+  return Produtos.find({atiProd: true})
 });
 
 // Meteor.publish('ProdutosAtivos', function() {
