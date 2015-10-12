@@ -29,8 +29,20 @@ Meteor.methods({
       data.isCancelado = false;
       Itens.insert(data);
     },
-    'encerrarVenda': function(idVenda){
-        Vendas.update({_id: idVenda},{$set:{atiVenda: false}}); 
+    'encerrarVenda': function(venda){
+        Vendas.update({_id: venda._id},{$set:
+          {
+              // numeroMesa: venda.numeroMesa,
+              // codGarcomAtend: venda.codGarcomAtend,
+              // qtdPessoas: venda.qtdPessoas,
+              // horAberMesa: venda.horAberMesa,
+              temPermanencia: venda.temPermanencia,
+              horSaiMesa: venda.horSaiMesa,
+              vlrTotal: venda.vlrTotal,
+              atiVenda: venda.atiVenda 
+            }
+          }
+        ); 
     },
     'horaServe':function(){
       return new Date();

@@ -1,11 +1,12 @@
 <template name="layout">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{> header}}
+    <div class="content">
+	    {{> header}}
 
-    {{> modalInfor}}
+	    {{> modalInfor}}
 
-    {{> yield}}
+	    {{> yield}}
 
-    {{> footer}}
-
+	    {{> footer}}
+	</div>
 </template>

@@ -4,14 +4,19 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Codigo</th><th>Nome</th><th>Função</th><th>Ativo</th>
+						<th>Codigo</th><th>Nome</th><th>Função</th>
 					</tr>
 				</thead>
   				<tbody>				
 				{{#each listFuncionarios}}
 					<tr>
 						<td>{{codFunc}}</td><td>{{nomFunc}}</td><td>{{funcaoFunc}}</td>
-						<td><input type="button" class="btn btn-danger" name="btnDesativar" value="Deletar"></td>
+
+						<td>
+                            <button type="button" id="btnDesativar" class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span> Deletar
+                            </button>
+                        </td>
 					</tr>
 				{{/each}}
 				</tbody>

@@ -5,7 +5,9 @@
         <div class="col-md-6">
                   {{#each geraMapaMesas}}
                     <div class="col-sm-2 mesa">
-    					      <input type="button" class="btn btn-block {{estado}}" name="{{numero}}" value="{{numero}}">
+                        <button type="button" class="btn btn-block {{estado}}" name="{{numero}}">
+                            <span class="glyphicon {{icon}}"></span> {{numero}}
+                        </button>
                     </div>
                   {{/each}}
         </div>
@@ -13,6 +15,7 @@
         <div class="col-md-6">
           {{> historico}}
         </div>
+
     </div>
 
     {{> modalAbrirMesa}}
@@ -47,8 +50,12 @@
                   </div>
 
                   <div class="modal-footer">
-                    <button type="submit " class="btn btn-default btn-primary">Abrir</button>
-                    <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn btn-primary">
+                          <span class="glyphicon glyphicon-open"></span> Abrir
+                      </button>
+                      <button type="button" id="saveCat" class="btn btn-danger" data-dismiss="modal">
+                          <span class="glyphicon glyphicon-remove-sign"></span> Cancel
+                      </button>
                   </div>
             </form>
         </div>
@@ -83,13 +90,17 @@
                             {{#each listObservacao}}
                                 <option value="{{nome}}">{{nome}}</option>
                             {{/each}}
-                        </select><a id="addObservacao" href="#">Nova Observação</a>
+                        </select><a id="addObservacao" href="#"><span class="glyphicon glyphicon-plus-sign"></span> Nova Observação</a>
                     </div>                  
                   </div>
 
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-default btn-primary">Incluir</button>
-                    <button type="button" id="bloqueio" class="btn btn-default btn-danger">Bloquear</button>
+                      <button type="submit" class="btn btn-primary">
+                          <span class="glyphicon glyphicon-plus-sign"></span> Incluir
+                      </button>
+                    <button type="button" id="bloqueio" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-ban-circle"></span> Bloquear
+                    </button>
                   </div>
             </form>
         </div>
@@ -111,8 +122,12 @@
           </div>
     
                 <div class="modal-footer">
-                    <button type="button" id="reabrir" class="btn btn-default btn-primary">Reabrir</button>
-                    <button type="button" id="encerrar" class="btn btn-default btn-danger">Encerrar</button>
+                    <button type="button" id="reabrir" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-retweet"></span> Reabrir
+                    </button>
+                    <button type="button" id="encerrar" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span> Encerrar
+                    </button>
                 </div>
 
         </div>
@@ -138,8 +153,12 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" id="saveObs" class="btn btn-default btn-primary">Save</button>
-                    <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="saveObs" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-save"></span> Save
+                    </button>
+                    <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove-sign"></span> Cancel
+                    </button>
                 </div>
             </form>
            </div>
@@ -168,15 +187,20 @@
                   <tbody>       
                 {{#each histMesa.listItens}}
                   <tr>
-                    <td>{{seqItem}}</td><td>{{desProd}}</td><td>R$ {{preProd}}</td><td>{{qtdProdItem}}</td><td>R$ {{vlrTotal}}</td>
-                    <td><input type="button" class="btn btn-danger" name="btnCancelarItem" value="Cancelar"></td>
+                    <td>{{seqItem}}</td><td class="text-nowrap">{{desProd}}</td><td class="text-nowrap">R$ {{preProd}}</td>
+                      <td class="text-nowrap">{{qtdProdItem}}</td><td class="text-nowrap">R$ {{vlrTotal}}</td>
+                    <td>
+                        <button type="button" id="btnCancelarItem" class="btn btn-danger btn-xs">
+                            <span class="glyphicon glyphicon-minus"></span> Remove
+                        </button>
+                    </td>
                   </tr>
                 {{/each}}
                 </tbody>
             </table>
             <span for="vlrTotalVenda">VALOR TOTAL:    </span><label id="vlrTotalVenda">R$ {{histMesa.vlrTotalVenda}}</label>
             <br/>
-            <span for="vlrPorPessoa">VALOR POR PESSOA:    </span><label id="vlrPorPessoa">R$ {{histMesa.vlrPorPessoa}}</label>
+            <span for="vlrPorPessoa">VALOR POR PESSOA:    </span><label id="vlrPorPessoa">{{histMesa.qtdPessoas}}  x R$ {{histMesa.vlrPorPessoa}}</label>
             <br/>
             <br/>
             <span for="horAberMesa">HORA DE ENT.:    </span><label id="

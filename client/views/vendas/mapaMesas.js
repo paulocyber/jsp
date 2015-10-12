@@ -20,6 +20,15 @@ Template.mapaMesas.helpers({
 	'geraMapaMesas': function() {
 		return MapaMesas.find();
 	},
+	'icon':function(){
+		if (this.estado == estadoLivre) {
+			return "glyphicon-cutlery";
+		}else if (this.estado == estadoOcupado) {
+            return "glyphicon-cutlery";
+		}else{
+            return "glyphicon-ban-circle";
+		}
+	}
 
 });
 
@@ -48,6 +57,7 @@ Template.mapaMesas.events({
 			$('#incluirProduto').modal('show');
 		}
 		else{
+			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
 			$('#bloqueioMesa').modal('show');
 		}
 	},
@@ -93,7 +103,7 @@ Template.mapaMesas.events({
 		$('#codProd').val('');
 		$('#desProd').val('');
 		$('#qtdProdItem').val('');
-
+		focusInput();
 
 	},
 	//botões dos modais
@@ -110,9 +120,17 @@ Template.mapaMesas.events({
 	'click #encerrar':function(){
 		var mesa = Session.get('selectedMesa');
 		var venda = Session.get('selectedVenda');
+        var historico = obterComanda();
+
+        venda.temPermanencia = historico.temPermanencia;
+        venda.horSaiMesa = new Date(Session.get('horaServe'));
+        venda.vlrTotal = historico.vlrTotalVenda;
+        venda.atiVenda = false;
+
 		$('#bloqueioMesa').modal('hide');
 		Meteor.call('editarEstadoMesa', mesa._id, estadoLivre,function (error, result) {});
-		Meteor.call('encerrarVenda', venda._id , function (error, result) {});
+		Meteor.call('encerrarVenda', venda, function (error, result) {});
+		Session.set('selectedVenda','');
 	},	
 	'click #addObservacao': function(event) {
 		event.preventDefault();
@@ -144,7 +162,7 @@ Template.modalObservacoes.events({
 	'click #saveObs': function(event) {
 		event.preventDefault();
 		var data = new Observacao();
-		data.nome = $('[id="nomeObs"]').val().toUpperCase();
+		data.nome = $('#nomeObs').val().toUpperCase();
 
 		if (Observacoes.findOne({
 				nome: data.nome
@@ -154,16 +172,16 @@ Template.modalObservacoes.events({
 		} else {
 			Meteor.call('addObservacao', data);
 			$('#addObservacaoModal').modal('hide');
-			$('[id="nomeObs"]').val('');
+			$('[#nomeObs]').val('');
 		}
 	},
-	'shown.bs.modal .modal': function(){
+	'shown.bs.modal  #addObservacaoModal': function(){
      	focusInput();	
   	}
 });
 Template.modalIncluirProduto.events({
 	//ao carregar o modal do bootstrap executar a função
-	'shown.bs.modal #addObservacaoModal': function(){
+	'shown.bs.modal #incluirProduto': function(){
     	focusInput();
   	}
 });
@@ -178,7 +196,7 @@ Template.modalAbrirMesa.events({
 		else
 			$('#nomeGarcom').text('');
 	},
-	'shown.bs.modal .modal': function(){
+	'shown.bs.modal #aberturaMesa': function(){
     	focusInput();
   }
 });
@@ -209,7 +227,7 @@ obterComanda = function(){
 	if(venda){
 		historico.codGarcomAtend = venda.codGarcomAtend;
 		historico.numeroMesa = venda.numeroMesa;
-		var horAberMesa = venda.horAberMesa;
+		var horAberMesa = new Date(venda.horAberMesa);
 		historico.datVenda = formatDate(horAberMesa);
 		var listaItens = Itens.find({idVenda: venda._id});
 
@@ -231,7 +249,9 @@ obterComanda = function(){
 			i+=1;
 		});
 		historico.vlrTotalVenda = somaTotalVenda.toFixed(2);
-		historico.vlrPorPessoa = somaTotalVenda.toFixed(2) / venda.qtdPessoas;
+		historico.qtdPessoas = venda.qtdPessoas;
+		var vlrPorPessoa = somaTotalVenda / historico.qtdPessoas;
+		historico.vlrPorPessoa = vlrPorPessoa.toFixed(2);
 		historico.horAberMesa = formatHora(horAberMesa);
 		historico.temPermanencia = calcPermanencia(horAberMesa);
 		historico.textFooter = "iRest - uBasic - Versão 1.00"
@@ -240,7 +260,6 @@ obterComanda = function(){
 
 	return historico;
 }
-
 
 Template.historico.helpers({
 	'hasVendaMesa':function(){

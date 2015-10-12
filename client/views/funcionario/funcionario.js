@@ -5,17 +5,17 @@ Meteor.subscribe('Funcionarios');
 function atribuirFuncionario(){
 		var func = new Funcionario();
 
-		func.codFunc = $('[id="codFunc"]').val().toUpperCase();
-		func.nomFunc = $('[id="nomFunc"]').val().toUpperCase();
-		func.funcaoFunc = $('[id="funcaoFunc"]').val().toUpperCase();
+		func.codFunc = $('#codFunc').val().toUpperCase();
+		func.nomFunc = $('#nomFunc').val().toUpperCase();
+		func.funcaoFunc = $('#funcaoFunc').val().toUpperCase();
 		func.atiFunc = true;
 
 		return func;
 }
 function zeraCamposFunc(){
-		$('[id="codFunc"]').val('');
-		$('[id="nomFunc"]').val('');
-		$('[id="funcaoFunc"]').val('');
+		$('#codFunc').val('');
+		$('#nomFunc').val('');
+		$('#funcaoFunc').val('');
 }
 
 //Helpers e Events do template addFuncionario
@@ -42,7 +42,7 @@ Template.listFuncionarios.helpers({
 	}
 });
 Template.listFuncionarios.events({
-	'click [name=btnDesativar]': function (event) {
+	'click #btnDesativar': function (event) {
 		event.preventDefault();
 		var idFunc = this._id;
 		var confirm = window.confirm('Tem certeza que deseja DELETAR?');

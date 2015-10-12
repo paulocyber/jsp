@@ -1,6 +1,7 @@
 body{
 	background-color: #EFEFEF;	
 	font-family: Verdana,Arial,sans-serif;
+
 }
 .container{
 	background-color: #FFF;
@@ -22,5 +23,6 @@ body{
 	display: none;
 }
 .font-10{
-	font-size: 90%;
+	font-size: 0.87em;
 }
+
