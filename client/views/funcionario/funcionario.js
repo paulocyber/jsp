@@ -19,6 +19,9 @@ function zeraCamposFunc(){
 }
 
 //Helpers e Events do template addFuncionario
+Template.addFuncionario.onRendered(function(){
+	$('#codFunc').focus();
+});
 Template.addFuncionario.helpers({
 	
 });
@@ -32,6 +35,7 @@ Template.addFuncionario.events({
 		});
 
 		zeraCamposFunc();
+		$('#codFunc').focus();
     }
 });
 

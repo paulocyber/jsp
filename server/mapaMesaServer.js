@@ -5,7 +5,7 @@ Meteor.publish('Observacoes',function(){
     return Observacoes.find()
   });
 Meteor.publish('Vendas',function(){
-    return Vendas.find({atiVenda: true})
+    return Vendas.find({})
   });
 
 Meteor.publish('Itens',function(){
@@ -32,10 +32,6 @@ Meteor.methods({
     'encerrarVenda': function(venda){
         Vendas.update({_id: venda._id},{$set:
           {
-              // numeroMesa: venda.numeroMesa,
-              // codGarcomAtend: venda.codGarcomAtend,
-              // qtdPessoas: venda.qtdPessoas,
-              // horAberMesa: venda.horAberMesa,
               temPermanencia: venda.temPermanencia,
               horSaiMesa: venda.horSaiMesa,
               vlrTotal: venda.vlrTotal,

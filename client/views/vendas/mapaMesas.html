@@ -82,7 +82,7 @@
                         <label for="desProd">DESCRIÇÃO: </label>
                         <input type="text" class="custom-input form-control" id="desProd" disabled="true" />
                          <label for="qtdProdItem">QUANTIDADE: </label>
-                        <input type="number" class="custom-input form-control" id="qtdProdItem"/>
+                        <input type="number" required="required" class="custom-input form-control" id="qtdProdItem"/>
                     </div>
                     <div class="form-group">
                         <label for="obsItem">OBSERVAÇÃO: </label><br/>
@@ -171,7 +171,8 @@
 
 <template name='historico'>
     {{#if hasVendaMesa}}
-        <h4 class="text-center">Historico da Mesa</h4>
+        <h3 class="text-center">Historico da Mesa</h3>
+        <h4 id="textHeader" class="text-center">{{histMesa.textHeader}}</h4>
         <span for="codGarcomHist">CÓD GARÇOM:    </span><label id="codGarcomHist">{{histMesa.codGarcomAtend}}</label>
         <br/>
          <span for="numMesaHist">NÚMERO MESA:    </span><label id="numMesaHist">{{histMesa.numeroMesa}}</label>
@@ -187,8 +188,8 @@
                   <tbody>       
                 {{#each histMesa.listItens}}
                   <tr>
-                    <td>{{seqItem}}</td><td class="text-nowrap">{{desProd}}</td><td class="text-nowrap">R$ {{preProd}}</td>
-                      <td class="text-nowrap">{{qtdProdItem}}</td><td class="text-nowrap">R$ {{vlrTotal}}</td>
+                    <td>{{seqItem}}</td><td class="text-nowrap">{{desProd}}</td><td class="text-nowrap">{{preProd}}</td>
+                      <td class="text-nowrap">{{qtdProdItem}}</td><td class="text-nowrap">{{vlrTotal}}</td>
                     <td>
                         <button type="button" id="btnCancelarItem" class="btn btn-danger btn-xs">
                             <span class="glyphicon glyphicon-minus"></span> Remove
@@ -198,9 +199,9 @@
                 {{/each}}
                 </tbody>
             </table>
-            <span for="vlrTotalVenda">VALOR TOTAL:    </span><label id="vlrTotalVenda">R$ {{histMesa.vlrTotalVenda}}</label>
+            <span for="vlrTotalVenda">VALOR TOTAL:    </span><label id="vlrTotalVenda">{{histMesa.vlrTotalVenda}}</label>
             <br/>
-            <span for="vlrPorPessoa">VALOR POR PESSOA:    </span><label id="vlrPorPessoa">{{histMesa.qtdPessoas}}  x R$ {{histMesa.vlrPorPessoa}}</label>
+            <span for="vlrPorPessoa">VALOR POR PESSOA:    </span><label id="vlrPorPessoa">{{histMesa.qtdPessoas}}  x {{histMesa.vlrPorPessoa}}</label>
             <br/>
             <br/>
             <span for="horAberMesa">HORA DE ENT.:    </span><label id="
@@ -209,7 +210,7 @@
             <span for="temPermanencia">PERMANENCIA:    </span><label id="temPermanencia">{{histMesa.temPermanencia}}</label>
             <br/>
             <br/>
-            <center><label id="textFooter">{{histMesa.textFooter}}</label></center>
+            <h5 id="textFooter" class="text-center">{{histMesa.textFooter}}</h5>
         </div>
     {{/if}}
 </template>

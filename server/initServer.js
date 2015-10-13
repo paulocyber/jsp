@@ -3,7 +3,7 @@
 
 configPlanoBasic = new PlanosIrest(3,30,5,100);
 var estadoLivre = "btn-success"; //Botao verde do bootstrap
-
+var estadoOcupado = "btn-primary";
 
 function gerarMesas(qtMesas){
   for(var i=0;i<qtMesas;i++){
@@ -13,7 +13,13 @@ function gerarMesas(qtMesas){
 
 function zerarMesas(qtMesas){
   for(var i=0;i<qtMesas;i++){
-    MapaMesas.update({},{$set:{estado: estadoLivre}},{multi:true});
+  	var num = i+1;
+  	var venda = Vendas.findOne({numeroMesa: num, atiVenda: true});
+  	if(venda){
+  		MapaMesas.update({numero: num},{$set:{estado: estadoOcupado}});	
+  	}else{
+  		MapaMesas.update({numero: num},{$set:{estado: estadoLivre}});	
+  	}    
   }
 };
 

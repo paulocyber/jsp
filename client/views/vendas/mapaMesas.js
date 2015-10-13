@@ -50,14 +50,14 @@ Template.mapaMesas.events({
 			Session.set('selectedVenda', '');
 
 		} else if (mesa.estado == estadoOcupado) {
-			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
+			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero, atiVenda:true}));
 			Meteor.call('horaServe', function (error, result) {
 				Session.set('horaServe', result);
 			});
 			$('#incluirProduto').modal('show');
 		}
 		else{
-			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
+			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero, atiVenda: true}));
 			$('#bloqueioMesa').modal('show');
 		}
 	},
@@ -219,12 +219,14 @@ calcPermanencia = function(d){
 	return permanencia;
 }
 
-
+new Currency('Brazil', 'BRL', 'R$', '%{symbol}%<value>.2f', true);
 
 obterComanda = function(){
 	var venda = Session.get('selectedVenda');
 	var historico = new Historico();
+	var currency = Currency.findByCode("BRL");
 	if(venda){
+		historico.textHeader = "Espetinho do Gladson";
 		historico.codGarcomAtend = venda.codGarcomAtend;
 		historico.numeroMesa = venda.numeroMesa;
 		var horAberMesa = new Date(venda.horAberMesa);
@@ -240,18 +242,18 @@ obterComanda = function(){
 			var produto = Produtos.findOne({_id: item.idProd});
 			if(produto){
 				itemHistorico.desProd = produto.desProd;
-				itemHistorico.preProd = produto.preProd;
+				itemHistorico.preProd = currency.toStr(produto.preProd);
 			}
 			itemHistorico.qtdProdItem = item.qtdProdItem;
-			itemHistorico.vlrTotal = item.vlrTotal.toFixed(2);
+			itemHistorico.vlrTotal = currency.toStr(item.vlrTotal);
 			somaTotalVenda += item.vlrTotal;
 			historico.listItens.push(itemHistorico);	
 			i+=1;
 		});
-		historico.vlrTotalVenda = somaTotalVenda.toFixed(2);
+		historico.vlrTotalVenda =  currency.toStr(somaTotalVenda);
 		historico.qtdPessoas = venda.qtdPessoas;
 		var vlrPorPessoa = somaTotalVenda / historico.qtdPessoas;
-		historico.vlrPorPessoa = vlrPorPessoa.toFixed(2);
+		historico.vlrPorPessoa = currency.toStr(vlrPorPessoa);
 		historico.horAberMesa = formatHora(horAberMesa);
 		historico.temPermanencia = calcPermanencia(horAberMesa);
 		historico.textFooter = "iRest - uBasic - Versão 1.00"
