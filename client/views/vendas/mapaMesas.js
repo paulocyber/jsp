@@ -176,7 +176,7 @@ Template.modalObservacoes.events({
 		}
 	},
 	'shown.bs.modal  #addObservacaoModal': function(){
-     	focusInput();	
+     	$('#nomeObs').focus();	
   	}
 });
 Template.modalIncluirProduto.events({
