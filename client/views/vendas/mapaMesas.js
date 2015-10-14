@@ -219,14 +219,14 @@ calcPermanencia = function(d){
 	return permanencia;
 }
 
-new Currency('Brazil', 'BRL', 'R$', '%{symbol}%<value>.2f', true);
+new Currency('Brazil', 'BRL', 'R$ ', '%{symbol}%<value>.2f', true);
 
 obterComanda = function(){
 	var venda = Session.get('selectedVenda');
 	var historico = new Historico();
 	var currency = Currency.findByCode("BRL");
 	if(venda){
-		historico.textHeader = "Espetinho do Gladson";
+		historico.textHeader = "Espetinho do Gledson";
 		historico.codGarcomAtend = venda.codGarcomAtend;
 		historico.numeroMesa = venda.numeroMesa;
 		var horAberMesa = new Date(venda.horAberMesa);
