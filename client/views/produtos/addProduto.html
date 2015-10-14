@@ -39,7 +39,9 @@
                 <label for="catProd">CATEGORIA: </label><br/>
                 <select class="form-control" id="catProd">
                     {{#each listCategoria}}
-                        <option value="{{nome}}">{{nome}}</option>
+                        <option value="{{nome}}" selected="{{#if forCat nome}}selected{{/if}}"> 
+                            {{nome}}
+                        </option>
                     {{/each}}
                 </select><a id="addCategoria" href="#"><span class="glyphicon glyphicon-plus-sign"></span> Nova Categoria</a>
             </div>
@@ -50,7 +52,7 @@
             </div>                        
         </div>
         <div class="col-md-12">
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn btn-success ">
                 <span class="glyphicon glyphicon-save"></span> Adicionar Produto
             </button>
         </div>

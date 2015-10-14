@@ -5,7 +5,19 @@ focusInput = function(){
 var estadoLivre = "btn-success";
 var estadoOcupado = "btn-primary";
 var estadoBoqueado = "btn-danger";
+ultimoObs ='';
 
+exibirMessage =function(m,type){
+	var typeMessege = {'danger':'bg-danger text-danger','success':'bg-success text-success'};
+
+    $(".msg").toggleClass(typeMessege[type]);
+	$('.msg').text(m);
+	$('.msg').fadeIn('slow');
+	$('.msg').fadeOut(5000, function(){
+		$(".msg").toggleClass("bg-danger text-danger");
+	});
+	
+}
 
 
 Meteor.subscribe('MapaMesas');
@@ -29,7 +41,6 @@ Template.mapaMesas.helpers({
             return "glyphicon-ban-circle";
 		}
 	}
-
 });
 
 Template.mapaMesas.events({
@@ -103,6 +114,7 @@ Template.mapaMesas.events({
 		$('#codProd').val('');
 		$('#desProd').val('');
 		$('#qtdProdItem').val('');
+		ultimoObs='';
 		focusInput();
 
 	},
@@ -155,6 +167,9 @@ Template.modalIncluirProduto.events({
 Template.modalIncluirProduto.helpers({
 	'listObservacao':function(){
 		return Observacoes.find();
+	},
+	'forObs':function(nome){
+		return nome === ultimoObs;
 	}
 });
 
@@ -163,16 +178,14 @@ Template.modalObservacoes.events({
 		event.preventDefault();
 		var data = new Observacao();
 		data.nome = $('#nomeObs').val().toUpperCase();
-
-		if (Observacoes.findOne({
-				nome: data.nome
-			})) {
-			$('.message-erro').fadeIn('slow');
-			$('.message-erro').fadeOut(5000);
+		if (Observacoes.findOne({nome: data.nome})) {
+				exibirMessage('Observação já cadastrada','danger');
 		} else {
 			Meteor.call('addObservacao', data);
 			$('#addObservacaoModal').modal('hide');
-			$('[#nomeObs]').val('');
+			$('#nomeObs').val('');
+			ultimoObs=data.nome;
+
 		}
 	},
 	'shown.bs.modal  #addObservacaoModal': function(){

@@ -1,6 +1,10 @@
 //teste git alteraçoes
 Meteor.subscribe('Produtos');
 Meteor.subscribe('Categorias');
+//variaveis globais
+ultimoCat='';
+
+
 
 //Função comuns 
 function atribuirProduto() {
@@ -46,7 +50,11 @@ Template.addProduto.onRendered(function(){
 Template.addProduto.helpers({
 	'listCategoria': function() {
 		return Categorias.find();
+	},
+	'forCat':function(nome){
+		return nome === ultimoCat;
 	}
+
 });
 
 Template.addProduto.events({
@@ -59,7 +67,9 @@ Template.addProduto.events({
 		});
 
 		zeraCamposProduto();
+		ultimoCat = '';
 		$('#codProd').focus();
+
 	},
 
 	'keyup #preProd': function(event) {
@@ -132,8 +142,10 @@ Template.modalCategoria.events({
 		} else {
 			Meteor.call('addCategorias', data);
 			$('#addCategoriaModal').modal('hide');
+			ultimoCat = data.nome;
 			$('#nomeCat').val('');
-			$('#subProd').focus();	
+			$('#subProd').focus();
+
 		}
 
 	},

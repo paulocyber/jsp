@@ -88,7 +88,7 @@
                         <label for="obsItem">OBSERVAÇÃO: </label><br/>
                         <select class="form-control" id="obsItem">
                             {{#each listObservacao}}
-                                <option value="{{nome}}">{{nome}}</option>
+                                <option value="{{nome}}" selected="{{#if forObs nome}}selected{{/if}}">{{nome}}</option>
                             {{/each}}
                         </select><a id="addObservacao" href="#"><span class="glyphicon glyphicon-plus-sign"></span> Nova Observação</a>
                     </div>                  
@@ -144,12 +144,14 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Cadastro de Observações</h4>
+
           </div>
           <div class="modal-body">
+            <span class="msg"></span>
             <form class="form-modal" id="formCat">
                 <div class="form-group">
                     <label for="nomeObs">NOME: </label>
-                    <input type="text" required="required" class="custom-input form-control" id="nomeObs"/><span class="bg-danger text-danger message-erro">Observação já cadastrada</span>
+                    <input type="text" required="required" class="custom-input form-control" id="nomeObs"/>                    
                 </div>
 
                 <div class="modal-footer">
