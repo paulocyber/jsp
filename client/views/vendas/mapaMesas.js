@@ -1,12 +1,13 @@
-//posicionar o mouse no primeiro input da tela
-focusInput = function(){
-	$('input:text:visible:first').focus();	
-}
+
 var estadoLivre = "btn-success";
 var estadoOcupado = "btn-primary";
 var estadoBoqueado = "btn-danger";
 ultimoObs ='';
 
+//posicionar o mouse no primeiro input da tela
+focusInput = function(){
+	$('input:text:visible:first').focus();	
+}
 exibirMessage =function(type,m){
 	var typeMessege = {'sucesso':'bg-success text-success','atencao':'bg-danger text-danger'};
 
@@ -18,6 +19,66 @@ exibirMessage =function(type,m){
 	});
 	
 }
+formatDate = function(d){
+	var dataBrasil = ""+d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+	return dataBrasil;
+}
+formatHora = function(d){
+	var horaBrasil = ""+d.getHours()+":"+d.getMinutes();
+	return horaBrasil;
+}
+calcPermanencia = function(d){
+	var dataAtual = new Date(Session.get('horaServe'));
+	var hora = dataAtual.getHours() - d.getHours();
+	var minuto = dataAtual.getMinutes() - d.getMinutes();
+	var permanencia = ""+hora+"h "+minuto+"min";
+	return permanencia;
+}
+
+new Currency('Brazil', 'BRL', 'R$ ', '%{symbol}%<value>.2f', true);
+
+obterComanda = function(){
+	var venda = Session.get('selectedVenda');
+	var historico = new Historico();
+	var currency = Currency.findByCode("BRL");
+	if(venda){
+		historico.textHeader = "Espetinho do Gledson";
+		historico.codGarcomAtend = venda.codGarcomAtend;
+		historico.numeroMesa = venda.numeroMesa;
+		var horAberMesa = new Date(venda.horAberMesa);
+		historico.datVenda = formatDate(horAberMesa);
+		var listaItens = Itens.find({idVenda: venda._id});
+
+		if(listaItens){
+		var somaTotalVenda = 0;
+		var i = 1;
+		listaItens.forEach(function (item) {
+			var itemHistorico = new ItemHistorico();
+			itemHistorico.seqItem = i;
+			var produto = Produtos.findOne({_id: item.idProd});
+			if(produto){
+				itemHistorico.desProd = produto.desProd;
+				itemHistorico.preProd = currency.toStr(produto.preProd);
+			}
+			itemHistorico.qtdProdItem = item.qtdProdItem;
+			itemHistorico.vlrTotal = currency.toStr(item.vlrTotal);
+			somaTotalVenda += item.vlrTotal;
+			historico.listItens.push(itemHistorico);	
+			i+=1;
+		});
+		historico.vlrTotalVenda =  currency.toStr(somaTotalVenda);
+		historico.qtdPessoas = venda.qtdPessoas;
+		var vlrPorPessoa = somaTotalVenda / historico.qtdPessoas;
+		historico.vlrPorPessoa = currency.toStr(vlrPorPessoa);
+		historico.horAberMesa = formatHora(horAberMesa);
+		historico.temPermanencia = calcPermanencia(horAberMesa);
+		historico.textFooter = "iRest - uBasic - Versão 1.00"
+		}
+	}
+
+	return historico;
+}
+
 
 
 Meteor.subscribe('MapaMesas');
@@ -222,68 +283,6 @@ Template.modalAbrirMesa.events({
     	focusInput();
   }
 });
-
-
-
-formatDate = function(d){
-	var dataBrasil = ""+d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
-	return dataBrasil;
-}
-formatHora = function(d){
-	var horaBrasil = ""+d.getHours()+":"+d.getMinutes();
-	return horaBrasil;
-}
-calcPermanencia = function(d){
-	var dataAtual = new Date(Session.get('horaServe'));
-	var hora = dataAtual.getHours() - d.getHours();
-	var minuto = dataAtual.getMinutes() - d.getMinutes();
-	var permanencia = ""+hora+"h "+minuto+"min";
-	return permanencia;
-}
-
-new Currency('Brazil', 'BRL', 'R$ ', '%{symbol}%<value>.2f', true);
-
-obterComanda = function(){
-	var venda = Session.get('selectedVenda');
-	var historico = new Historico();
-	var currency = Currency.findByCode("BRL");
-	if(venda){
-		historico.textHeader = "Espetinho do Gledson";
-		historico.codGarcomAtend = venda.codGarcomAtend;
-		historico.numeroMesa = venda.numeroMesa;
-		var horAberMesa = new Date(venda.horAberMesa);
-		historico.datVenda = formatDate(horAberMesa);
-		var listaItens = Itens.find({idVenda: venda._id});
-
-		if(listaItens){
-		var somaTotalVenda = 0;
-		var i = 1;
-		listaItens.forEach(function (item) {
-			var itemHistorico = new ItemHistorico();
-			itemHistorico.seqItem = i;
-			var produto = Produtos.findOne({_id: item.idProd});
-			if(produto){
-				itemHistorico.desProd = produto.desProd;
-				itemHistorico.preProd = currency.toStr(produto.preProd);
-			}
-			itemHistorico.qtdProdItem = item.qtdProdItem;
-			itemHistorico.vlrTotal = currency.toStr(item.vlrTotal);
-			somaTotalVenda += item.vlrTotal;
-			historico.listItens.push(itemHistorico);	
-			i+=1;
-		});
-		historico.vlrTotalVenda =  currency.toStr(somaTotalVenda);
-		historico.qtdPessoas = venda.qtdPessoas;
-		var vlrPorPessoa = somaTotalVenda / historico.qtdPessoas;
-		historico.vlrPorPessoa = currency.toStr(vlrPorPessoa);
-		historico.horAberMesa = formatHora(horAberMesa);
-		historico.temPermanencia = calcPermanencia(horAberMesa);
-		historico.textFooter = "iRest - uBasic - Versão 1.00"
-		}
-	}
-
-	return historico;
-}
 
 Template.historico.helpers({
 	'hasVendaMesa':function(){

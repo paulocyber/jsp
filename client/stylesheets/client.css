@@ -29,3 +29,29 @@ body{
 .color-white{
 	color: #fff !important;
 }
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.btn-login{
+	background-color: #101010;
+	color: #fff;
+	border-radius: 100px;
+}
+.btn-login:hover{
+	background-color: #47A447;
+	color: #fff;	
+}
+.btn-register{
+	background-color: #1366A8;
+	color: #fff;
+	border-radius: 100px;
+}
+.btn-register:hover{
+	background-color: #101010;
+	color: #fff;	
+}
+.login-or-register{
+	width: 330px;
+    height: 400px;
+}
