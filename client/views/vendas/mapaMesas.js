@@ -7,14 +7,14 @@ var estadoOcupado = "btn-primary";
 var estadoBoqueado = "btn-danger";
 ultimoObs ='';
 
-exibirMessage =function(m,type){
-	var typeMessege = {'danger':'bg-danger text-danger','success':'bg-success text-success'};
+exibirMessage =function(type,m){
+	var typeMessege = {'sucesso':'bg-success text-success','atencao':'bg-danger text-danger'};
 
     $(".msg").toggleClass(typeMessege[type]);
 	$('.msg').text(m);
 	$('.msg').fadeIn('slow');
-	$('.msg').fadeOut(5000, function(){
-		$(".msg").toggleClass("bg-danger text-danger");
+	$('.msg').fadeOut(4000, function(){
+		$(".msg").toggleClass(typeMessege[type]);
 	});
 	
 }
@@ -78,17 +78,23 @@ Template.mapaMesas.events({
 		var mesa = Session.get('selectedMesa');
 		var codGarcomAtend = $('#codGarcomAtend').val();
 		var qtdPessoas = $('#qtdPessoas').val();
+		var isCodGarcomAtend = Funcionarios.findOne({codFunc: codGarcomAtend});
 
-		var venda = new Venda();
+		if(isCodGarcomAtend){
+			var venda = new Venda();
 
-		venda.numeroMesa = mesa.numero;
-		venda.codGarcomAtend = codGarcomAtend;
-		venda.qtdPessoas = qtdPessoas;
+			venda.numeroMesa = mesa.numero;
+			venda.codGarcomAtend = codGarcomAtend;
+			venda.qtdPessoas = qtdPessoas;
 
-		$('#aberturaMesa').modal('hide');
-		Meteor.call('editarEstadoMesa', mesa._id, estadoOcupado);
-		Meteor.call('iniciarVenda',venda);
-		
+			$('#aberturaMesa').modal('hide');
+			Meteor.call('editarEstadoMesa', mesa._id, estadoOcupado);
+			Meteor.call('iniciarVenda',venda, function (error, result){
+				mensagem(result);
+			});	
+		}else{
+			exibirMessage('atencao','Garçom NÃO EXISTE');
+		}				
 	},
 	'submit #incluir': function(event) {
 		event.preventDefault();
@@ -102,15 +108,17 @@ Template.mapaMesas.events({
 
 		var qtdProdItem = $('#qtdProdItem').val();
 
-
-
-		var item = new Item();
-		item.idVenda= venda._id;
-		item.idProd= produto._id;
-		item.idObsItem = observacao._id;
-		item.qtdProdItem = qtdProdItem;
-		item.vlrTotal = produto.preProd *qtdProdItem; 
-		Meteor.call('incluirProduto', item, function (error, result) {});
+		if(produto){
+			var item = new Item();
+			item.idVenda= venda._id;
+			item.idProd= produto._id;
+			item.idObsItem = observacao._id;
+			item.qtdProdItem = qtdProdItem;
+			item.vlrTotal = produto.preProd *qtdProdItem; 
+			Meteor.call('incluirProduto', item, function (error, result) {});
+			exibirMessage('sucesso','Item incluido com sucesso!');
+		}else exibirMessage('atencao','Produto NÃO EXISTE');
+		
 		$('#codProd').val('');
 		$('#desProd').val('');
 		$('#qtdProdItem').val('');
@@ -128,6 +136,7 @@ Template.mapaMesas.events({
 		var mesa = Session.get('selectedMesa');
 		$('#bloqueioMesa').modal('hide');
 		Meteor.call('editarEstadoMesa', mesa._id, estadoOcupado,function (error, result) {});
+		
 	},
 	'click #encerrar':function(){
 		var mesa = Session.get('selectedMesa');
@@ -179,7 +188,7 @@ Template.modalObservacoes.events({
 		var data = new Observacao();
 		data.nome = $('#nomeObs').val().toUpperCase();
 		if (Observacoes.findOne({nome: data.nome})) {
-				exibirMessage('Observação já cadastrada','danger');
+				exibirMessage('atencao','Observação já cadastrada');
 		} else {
 			Meteor.call('addObservacao', data);
 			$('#addObservacaoModal').modal('hide');

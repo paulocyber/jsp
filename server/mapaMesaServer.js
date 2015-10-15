@@ -23,7 +23,7 @@ Meteor.methods({
   	  data.horAberMesa = new Date();
   	  data.atiVenda = true;
       Vendas.insert(data);
-      return "Venda iniciada com sucesso!";
+      return new Mensage ('sucesso',"Mesa aberta com sucesso!");
     },
     'incluirProduto': function(data){
       data.isCancelado = false;

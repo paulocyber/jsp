@@ -1,8 +1,10 @@
 //teste git alteraçoes
 Meteor.subscribe('Produtos');
 Meteor.subscribe('Categorias');
+
+
 //variaveis globais
-ultimoCat='';
+ultimoCat=''; //variavel para setar select na hora que inserir uma nova categoria 
 
 
 
@@ -134,11 +136,8 @@ Template.modalCategoria.events({
 		var data = new Categoria();
 		data.nome = $('#nomeCat').val().toUpperCase();
 
-		if (Categorias.findOne({
-				nome: data.nome
-			})) {
-			$('.message-erro').fadeIn('slow');
-			$('.message-erro').fadeOut(5000);
+		if (Categorias.findOne({nome: data.nome})) {
+			exibirMessage('atencao','Categoria já cadastrada');
 		} else {
 			Meteor.call('addCategorias', data);
 			$('#addCategoriaModal').modal('hide');
