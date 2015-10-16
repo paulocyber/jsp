@@ -54,6 +54,7 @@ obterComanda = function(){
 		var i = 1;
 		listaItens.forEach(function (item) {
 			var itemHistorico = new ItemHistorico();
+			itemHistorico._id = item._id;
 			itemHistorico.seqItem = i;
 			var produto = Produtos.findOne({_id: item.idProd});
 			if(produto){
@@ -122,14 +123,14 @@ Template.mapaMesas.events({
 			Session.set('selectedVenda', '');
 
 		} else if (mesa.estado == estadoOcupado) {
-			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero, atiVenda:true}));
+			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
 			Meteor.call('horaServe', function (error, result) {
 				Session.set('horaServe', result);
 			});
 			$('#incluirProduto').modal('show');
 		}
 		else{
-			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero, atiVenda: true}));
+			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
 			$('#bloqueioMesa').modal('show');
 		}
 	},
@@ -294,5 +295,11 @@ Template.historico.helpers({
 	'histMesa': function() {
 		var historico = obterComanda();
 		return historico;
+	}
+});
+Template.historico.events({
+	'click #btn-cancelar-item': function () {
+		var itemId = this._id;
+		Meteor.call('cancelarItem',itemId ,function (error, result) {});
 	}
 });

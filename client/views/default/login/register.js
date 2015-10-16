@@ -1,19 +1,8 @@
-Template.register.onRendered(function(){
-		/*Meteor.call('hasUser', function (error, result) {
-            Session.set('hasUsers', result);
-        });
-	    var hasUser = Session.get('hasUsers');
-	    
-	    if(hasUser){
-	    	Router.go("login");
-	    }*/
-    });
-
 Template.register.events({
     'submit form': function(event){
         event.preventDefault();
-        var email = $('[name=email]').val();
-        var password =''+$('[name=password]').val();
+        var email = $('#email').val();
+        var password =$('#senha').val();
 	    Accounts.createUser({email: email, password: password}, 
 	    	function(error){
 	    		if(error){

@@ -5,11 +5,11 @@ Meteor.publish('Observacoes',function(){
     return Observacoes.find()
   });
 Meteor.publish('Vendas',function(){
-    return Vendas.find({})
+    return Vendas.find({atiVenda: true})
   });
 
 Meteor.publish('Itens',function(){
-    return Itens.find();
+    return Itens.find({isCancelado: false});
   });
 
 Meteor.methods({
@@ -42,6 +42,9 @@ Meteor.methods({
     },
     'horaServe':function(){
       return new Date();
+    },
+    'cancelarItem':function(itemId){
+      Itens.update({_id: itemId},{$set:{isCancelado: true}}); 
     }
 });
 
