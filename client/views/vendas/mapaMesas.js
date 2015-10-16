@@ -47,7 +47,7 @@ obterComanda = function(){
 		historico.numeroMesa = venda.numeroMesa;
 		var horAberMesa = new Date(venda.horAberMesa);
 		historico.datVenda = formatDate(horAberMesa);
-		var listaItens = Itens.find({idVenda: venda._id});
+		var listaItens = Itens.find({idVenda: venda._id, isCancelado: false});
 
 		if(listaItens){
 		var somaTotalVenda = 0;
@@ -232,6 +232,9 @@ Template.modalIncluirProduto.events({
 			$('#desProd').val(desProd);
 		else
 			$('#desProd').val('');
+	},
+	'keyup #incluirProduto': function(event){
+    	console.log(event.which);
 	}
 });
 

@@ -9,7 +9,7 @@ Meteor.publish('Vendas',function(){
   });
 
 Meteor.publish('Itens',function(){
-    return Itens.find({isCancelado: false});
+    return Itens.find();
   });
 
 Meteor.methods({

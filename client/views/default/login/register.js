@@ -6,8 +6,11 @@ Template.register.events({
 	    Accounts.createUser({email: email, password: password}, 
 	    	function(error){
 	    		if(error){
-	    		    console.log(error.reason); // Output error if registration fails
+	    		    mensagem(new Mensage('atencao',error.reason)); // Output error if registration fails
 	    		} else {
+	    			Meteor.call('desativarCreateUser', function (error, result) {
+	    				console.log(result);
+	    			});
 	        		Router.go("home"); // Redirect user if registration succeeds
 	    		}
 		});
