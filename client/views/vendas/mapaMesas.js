@@ -78,7 +78,27 @@ obterComanda = function(){
 	}
 
 	return historico;
-}
+};
+
+modalShow = function(nameModal){
+		Session.set("modalOn", true);
+		 	// Ativa escuta por keyup no modal
+		$(document).on('keyup', function (e) {
+			if (e.keyCode == 27) { // Se clicou no ESC
+			// Despacha modal
+				Session.set('modalOn', false);
+			// Desativa escuta por keyup no modal
+				$(document).off('keyup');
+			}
+		});
+
+		$(nameModal).modal('show');
+};
+
+modalHide = function(nameModal){
+		Session.set("modalOn", false);
+		$(nameModal).modal('hide');
+};
 
 
 
@@ -105,6 +125,11 @@ Template.mapaMesas.helpers({
 	}
 });
 
+Template.mapaMesas.rendered = function() {
+};
+
+
+
 Template.mapaMesas.events({
 	'click .mesa': function() {	
 		var mesa = new Mesa();	
@@ -118,8 +143,8 @@ Template.mapaMesas.events({
 			$('#qtdPessoas').val('');
 			$('#nomeGarcom').text('');
 
-			$('#aberturaMesa').modal('show');
-
+	
+			modalShow('#aberturaMesa');
 			Session.set('selectedVenda', '');
 
 		} else if (mesa.estado == estadoOcupado) {
@@ -127,11 +152,11 @@ Template.mapaMesas.events({
 			Meteor.call('horaServe', function (error, result) {
 				Session.set('horaServe', result);
 			});
-			$('#incluirProduto').modal('show');
+			modalShow('#incluirProduto');
 		}
 		else{
 			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
-			$('#bloqueioMesa').modal('show');
+			modalShow('#bloqueioMesa');
 		}
 	},
 	//submit dos formularios 
@@ -149,7 +174,8 @@ Template.mapaMesas.events({
 			venda.codGarcomAtend = codGarcomAtend;
 			venda.qtdPessoas = qtdPessoas;
 
-			$('#aberturaMesa').modal('hide');
+			modalHide('#aberturaMesa');
+
 			Meteor.call('editarEstadoMesa', mesa._id, estadoOcupado);
 			Meteor.call('iniciarVenda',venda, function (error, result){
 				mensagem(result);
@@ -168,7 +194,7 @@ Template.mapaMesas.events({
 		var obsItem = $('#obsItem').val();
 		var observacao = Observacoes.findOne({nome: obsItem});
 
-		var qtdProdItem = $('#qtdProdItem').val();
+		var qtdProdItem = parseInt($('#qtdProdItem').val());
 
 		if(produto){
 			var item = new Item();
@@ -191,12 +217,12 @@ Template.mapaMesas.events({
 	//botões dos modais
 	'click #bloqueio':function(){
 		var mesa = Session.get('selectedMesa');
-		$('#incluirProduto').modal('hide');
+		modalHide('#incluirProduto');
 		Meteor.call('editarEstadoMesa', mesa._id, estadoBoqueado,function (error, result) {});
 	},
 	'click #reabrir':function(){
 		var mesa = Session.get('selectedMesa');
-		$('#bloqueioMesa').modal('hide');
+		modalHide('#bloqueioMesa');
 		Meteor.call('editarEstadoMesa', mesa._id, estadoOcupado,function (error, result) {});
 		
 	},
@@ -210,7 +236,7 @@ Template.mapaMesas.events({
         venda.vlrTotal = historico.vlrTotalVenda;
         venda.atiVenda = false;
 
-		$('#bloqueioMesa').modal('hide');
+		modalHide('#bloqueioMesa');
 		Meteor.call('editarEstadoMesa', mesa._id, estadoLivre,function (error, result) {});
 		Meteor.call('encerrarVenda', venda, function (error, result) {});
 		Session.set('selectedVenda','');
@@ -219,6 +245,10 @@ Template.mapaMesas.events({
 		event.preventDefault();
 		$('#addObservacaoModal').modal('show');
 	},
+	'click .btn-cancel':function(event){
+		event.preventDefault();
+		Session.set('modalOn', false);
+	}
 });
 
 
