@@ -1,4 +1,7 @@
 typeMessages = {'sucesso':'#message-success', 'info':'#message-info', 'aviso':'#message-warning', 'atencao':'#message-danger'};
+onbeforeunload = function () {
+    Meteor.logout ();
+}
 
 mensagem = function (mensage){	
 	$('.message').text(mensage.mens);
