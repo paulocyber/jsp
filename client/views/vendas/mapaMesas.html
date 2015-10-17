@@ -191,26 +191,7 @@
          <br/>
          <span for="datVendaHist">DATA:    </span><label id="datVendaHist">{{histMesa.datVenda}}</label>
          <div class="col-md-12">
-             <table class="table font-10">
-                 <thead>
-                  <tr>
-                <th>Item</th><th>Descrição</th><th>V.Unit.</th><th>Quant.</th><th>V.Total</th>
-                  </tr>
-                </thead>
-                  <tbody>       
-                {{#each histMesa.listItens}}
-                  <tr>
-                    <td>{{seqItem}}</td><td class="text-nowrap">{{desProd}}</td><td class="text-nowrap">{{preProd}}</td>
-                      <td class="text-nowrap">{{qtdProdItem}}</td><td class="text-nowrap">{{vlrTotal}}</td>
-                    <td>
-                        <button type="button" id="btn-cancelar-item" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-minus"></span> Remove
-                        </button>
-                    </td>
-                  </tr>
-                {{/each}}
-                </tbody>
-            </table>
+            {{> deviceRender 'tableHist'}}
             <span for="vlrTotalVenda">VALOR TOTAL:    </span><label id="vlrTotalVenda">{{histMesa.vlrTotalVenda}}</label>
             <br/>
             <span for="vlrPorPessoa">QUANT. PESSOAS:    </span><label id="vlrPorPessoa">{{histMesa.qtdPessoas}}</label>
@@ -227,4 +208,49 @@
             <h5 id="textFooter" class="text-center">{{histMesa.textFooter}}</h5>
         </div>
     {{/if}}
+</template>
+
+<template name='tableHist_desktop'>
+    <table class="table font-10">
+        <thead>
+            <tr>
+                <th>Item</th><th>Descrição</th><th>V.Unit.</th><th>Quant.</th><th>V.Total</th>
+                </tr>
+        </thead>
+        <tbody>       
+            {{#each Itens}}
+                <tr>
+                    <td>{{seqItem}}</td><td class="text-nowrap">{{desProd}}</td><td class="text-nowrap">{{preProd}}</td>
+                    <td class="text-nowrap">{{qtdProdItem}}</td><td class="text-nowrap">{{vlrTotal}}</td>
+                    <td>
+                         <button type="button" id="btn-cancelar-item" class="btn btn-danger btn-xs">
+                            <span class="glyphicon glyphicon-minus"></span> Remove
+                        </button>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</template>
+
+<template name='tableHist_phone'>
+    <table class="table font-10">
+        <thead>
+            <tr>
+                <th>Item</th><th>Descrição</th><th>Quant.</th>
+            </tr>
+        </thead>
+        <tbody>       
+            {{#each Itens}}
+                <tr>
+                    <td>{{seqItem}}</td><td class="text-nowrap">{{desProd}}</td><td class="text-nowrap">{{qtdProdItem}}</td>
+                    <td>
+                         <button type="button" id="btn-cancelar-item" class="btn btn-danger btn-xs">
+                            <span class="glyphicon glyphicon-minus"></span> Remove
+                        </button>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </template>

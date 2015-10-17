@@ -164,9 +164,6 @@ Template.modalIncluirProduto.events({
 			$('#desProd').val(desProd);
 		else
 			$('#desProd').val('');
-	},
-	'keyup #incluirProduto': function(event){
-    	console.log(event.which);
 	}
 });
 
@@ -229,6 +226,7 @@ Template.historico.helpers({
 	},
 	'histMesa': function() {
 		var historico = obterComanda();
+		Session.set('listaItens', historico.listItens);
 		return historico;
 	}
 });
@@ -236,5 +234,19 @@ Template.historico.events({
 	'click #btn-cancelar-item': function () {
 		var itemId = this._id;
 		Meteor.call('cancelarItem',itemId ,function (error, result) {});
+	}
+});
+
+Template.tableHist_desktop.helpers({
+	'Itens': function () {
+		var itensHist = Session.get('listaItens');
+		return itensHist;
+	}
+});
+
+Template.tableHist_phone.helpers({
+	'Itens': function () {
+		var itensHist = Session.get('listaItens');
+		return itensHist;
 	}
 });

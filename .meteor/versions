@@ -61,6 +61,7 @@ mongo@1.1.2
 mongo-id@1.0.1
 mrt:bootstrap-3@0.3.8
 mrt:exports@1.0.0
+mystor:device-detection@0.2.0
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
