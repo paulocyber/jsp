@@ -1,10 +1,10 @@
 <template name="mapaMesas">
-	  <div class="col-md-12 col-sm-12 col-xs-12 caixa">
+	  <div class="col-md-12 caixa">
         <h2 class="text-center">MAPA DE MESAS</h2>
             <!-- Primeiro Coluna -->
-            <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="col-md-6">
                   {{#each geraMapaMesas}}
-                    <div class="col-md-2 col-sm-2 col-xs-2 mesa">
+                    <div class="col-md-2  mesa">
                         <button type="button" class="btn btn-block {{estado}}" name="{{numero}}">
                             <span class="glyphicon {{icon}}"></span> {{numero}}
                         </button>
@@ -12,7 +12,7 @@
                   {{/each}}
         </div>
         <!-- Segunda Coluna -->
-        <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="col-md-6">
           {{> historico}}
         </div>
 
