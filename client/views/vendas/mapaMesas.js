@@ -66,7 +66,7 @@ Template.mapaMesas.events({
 		event.preventDefault();
 		var mesa = Session.get('selectedMesa');
 		var codGarcomAtend = $('#codGarcomAtend').val();
-		var qtdPessoas = $('#qtdPessoas').val();
+		var qtdPessoas = parseInt($('#qtdPessoas').val());
 		var isCodGarcomAtend = Funcionarios.findOne({codFunc: codGarcomAtend});
 
 		if(isCodGarcomAtend){
@@ -135,7 +135,7 @@ Template.mapaMesas.events({
 
         venda.temPermanencia = historico.temPermanencia;
         venda.horSaiMesa = new Date(Session.get('horaServe'));
-        venda.vlrTotal = historico.vlrTotalVenda;
+        venda.vlrTotal = currency.parseStr(historico.vlrTotalVenda);
         venda.atiVenda = false;
 
 		modalHide('#bloqueioMesa');
@@ -147,7 +147,7 @@ Template.mapaMesas.events({
 		event.preventDefault();
 		$('#addObservacaoModal').modal('show');
 	},
-	'click .btn-cancel':function(event){
+	'click .btn-close':function(event){
 		event.preventDefault();
 		Session.set('modalOn', false);
 	}

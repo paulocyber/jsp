@@ -34,7 +34,7 @@ atribuirProduto = function(){
 	prod.undProd = $('#undProd').val().toUpperCase();
 	prod.cusProd = parseFloat($('#cusProd').val());
 	prod.preProd = parseFloat($('#preProd').val());
-	prod.marProd = $('#marProd').val();
+	prod.marProd = parseInt($('#marProd').val());
 
 	var nomeCat = $('#catProd').val().toUpperCase();
 	var categoria = Categorias.findOne({
@@ -43,7 +43,7 @@ atribuirProduto = function(){
 
 	prod.idCatProd = categoria._id;
 	prod.subProd = $('#subProd').val().toUpperCase();
-	prod.datProd = new Date().toDateString();
+	prod.datProd = new Date();
 	prod.atiProd = true;
 
 	return prod;
@@ -62,7 +62,7 @@ zeraCamposProduto = function() {
 }
 
 new Currency('Brazil', 'BRL', 'R$ ', '%{symbol}%<value>.2f', true);
-
+currency = Currency.findByCode("BRL");
 
 //posicionar o mouse no primeiro input da tela
 focusInput = function(){
@@ -87,8 +87,17 @@ formatDate = function(d){
 };
 
 formatHora = function(d){
-	var horaBrasil = ""+d.getHours()+":"+d.getMinutes();
+	var horaBrasil = acresZero(d.getHours())+":"+acresZero(d.getMinutes());
 	return horaBrasil;
+};
+acresZero = function(n){
+	var number = '';
+	if(n.toString().length<2) 
+		number +="0"+n;
+	else
+		number += n;
+
+	return number;
 };
 
 calcPermanencia = function(d){
@@ -102,7 +111,6 @@ calcPermanencia = function(d){
 obterComanda = function(){
 	var venda = Session.get('selectedVenda');
 	var historico = new Historico();
-	var currency = Currency.findByCode("BRL");
 	if(venda){
 		historico.textHeader = "Espetinho do Gledson";
 		historico.codGarcomAtend = venda.codGarcomAtend;

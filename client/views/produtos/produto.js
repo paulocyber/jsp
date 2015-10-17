@@ -108,6 +108,10 @@ Template.modalCategoria.events({
 		}
 
 	},
+	'click .btn-close':function(event){
+		event.preventDefault();
+		Session.set('modalOn', false);
+	},
 	'shown.bs.modal #addCategoriaModal': function(){
     	$('#nomeCat').focus();	
   	}
