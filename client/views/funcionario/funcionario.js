@@ -1,23 +1,6 @@
 //teste git alteraçoes
 Meteor.subscribe('Funcionarios');
 
-//Função comuns 
-function atribuirFuncionario(){
-		var func = new Funcionario();
-
-		func.codFunc = $('#codFunc').val().toUpperCase();
-		func.nomFunc = $('#nomFunc').val().toUpperCase();
-		func.funcaoFunc = $('#funcaoFunc').val().toUpperCase();
-		func.atiFunc = true;
-
-		return func;
-}
-function zeraCamposFunc(){
-		$('#codFunc').val('');
-		$('#nomFunc').val('');
-		$('#funcaoFunc').val('');
-}
-
 //Helpers e Events do template addFuncionario
 Template.addFuncionario.onRendered(function(){
 	$('#codFunc').focus();
