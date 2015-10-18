@@ -13,43 +13,57 @@ Meteor.publish('Itens',function(){
   });
 
 Meteor.methods({
-  'editarEstadoMesa':function(mesaId,estado){
-      MapaMesas.update({_id: mesaId},{$set:{estado: estado}});
+    'editarEstadoMesa':function(mesaId,estado){
+        if(validacao()){
+            MapaMesas.update({_id: mesaId},{$set:{estado: estado}});
+        }
     }
 });
 
 Meteor.methods({
   'iniciarVenda':function(data){      
-  	  data.horAberMesa = new Date();
-  	  data.atiVenda = true;
-      Vendas.insert(data);
-      return new Mensage ('sucesso',"Mesa aberta com sucesso!");
+      if(validacao()){
+          data.horAberMesa = new Date();
+          data.atiVenda = true;
+          Vendas.insert(data);
+          return new Mensage ('sucesso',"Mesa aberta com sucesso!");  
+      }     
     },
     'incluirProduto': function(data){
-      data.isCancelado = false;
-      Itens.insert(data);
+        if(validacao()){
+            data.isCancelado = false;
+            Itens.insert(data);
+        }
     },
     'encerrarVenda': function(venda){
-        Vendas.update({_id: venda._id},{$set:
-          {
-              temPermanencia: venda.temPermanencia,
-              horSaiMesa: venda.horSaiMesa,
-              vlrTotal: venda.vlrTotal,
-              atiVenda: venda.atiVenda 
-            }
-          }
-        ); 
+        if(validacao()){
+            Vendas.update({_id: venda._id},{$set:
+                {
+                temPermanencia: venda.temPermanencia,
+                horSaiMesa: venda.horSaiMesa,
+                vlrTotal: venda.vlrTotal,
+                atiVenda: venda.atiVenda 
+                }
+            });
+        } 
     },
     'horaServe':function(){
-      return new Date();
+        if(validacao()){
+            return new Date();
+        }
     },
     'cancelarItem':function(itemId){
-      Itens.update({_id: itemId},{$set:{isCancelado: true}}); 
+        if(validacao()){
+            Itens.update({_id: itemId},{$set:{isCancelado: true}}); 
+            return new Mensage('sucesso','item cancelado');
+        }
     }
 });
 
 Meteor.methods({
   'addObservacao':function(data){
-      Observacoes.insert(data);
+        if(validacao()){
+            Observacoes.insert(data);
+        }
     }
 });

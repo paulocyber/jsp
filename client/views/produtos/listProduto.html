@@ -1,27 +1,51 @@
 <template name="listProduto">
 		<div class="col-md-12 col-sm-12 col-xs-12 caixa" >
 			<h2 class="text-center">Lista de Produtos</h2>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Codigo</th><th>Referencia</th><th>Descricao</th><th>Unidade</th><th>Custo</th><th>Preco</th><th>Margem</th><th>Categoria</th><th>Subcatgoria</th><th>Data Compra</th>
-					</tr>
-				</thead>
-  				<tbody>				
-				{{#each listProduto}}
-					<tr>
-						<td>{{codProd}}</td><td>{{refProd}}</td><td>{{desProd}}</td><td>{{undProd}}</td><td>{{cusProd}}</td><td>{{preProd}}</td><td>{{marProd}}</td><td>{{nomeCat}}</td><td>{{subProd}}</td><td>{{datProd}}</td>	
-						<td>
-                            <button type="button" id="btnDesativar" class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-trash"></span> Deletar
-                        </button>
-                        </td>
-					</tr>
-				{{/each}}
-				</tbody>
-			</table>
+			{{> deviceRender 'tableListProd'}}
 		</div>
 </template>
   
    
-  
+<template name="tableListProd_desktop">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Codigo</th><th>Referencia</th><th>Descricao</th><th>Unidade</th><th>Custo</th><th>Preco</th><th>Margem</th><th>Categoria</th><th>Subcatgoria</th><th>Data Inclusão</th>
+			</tr>
+		</thead>
+  		<tbody>				
+			{{#each listProduto}}
+				<tr>
+					<td>{{codProd}}</td><td>{{refProd}}</td><td>{{desProd}}</td><td>{{undProd}}</td><td>{{cusProd}}</td><td>{{preProd}}</td><td>{{marProd}}</td><td>{{nomeCat}}</td><td>{{subProd}}</td><td>{{formatDate(datProd)}}</td>	
+					<td>
+                   	    <button type="button" id="btnDesativar" class="btn btn-danger btn-sm">
+                           	<span class="glyphicon glyphicon-trash"></span> Deletar
+                   		</button>
+                    </td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template> 
+
+<template name="tableListProd_phone">
+	<table class="table table-phone-font-size">
+		<thead>
+			<tr>
+				<th>Codigo</th><th>Descricao</th><th>Custo</th><th>Preco</th>
+			</tr>
+		</thead>
+  		<tbody>				
+			{{#each listProduto}}
+				<tr>
+					<td>{{codProd}}</td><td>{{desProd}}</td><td>{{cusProd}}</td><td>{{preProd}}</td>
+					<td>
+                   	    <button type="button" id="btnDesativar" class="btn btn-danger btn-xs table-btn-font-size">
+                           	<span class="glyphicon glyphicon-trash"></span> Deletar
+                   		</button>
+                    </td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template> 

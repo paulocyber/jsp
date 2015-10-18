@@ -1,13 +1,19 @@
 <template name="listFuncionarios">
-		<div class="col-md-12 col-sm-12 col-xs-12 caixa" >
+		 <div class="container theme-showcase" role="main">
 			<h2 class="text-center">Lista de Funcionarios</h2>
-			<table class="table">
+			{{> deviceRender 'tableListFunc'}}
+			
+		</div>
+</template>
+
+<template name="tableListFunc_desktop">
+	<table class="table">
 				<thead>
 					<tr>
 						<th>Codigo</th><th>Nome</th><th>Função</th>
 					</tr>
 				</thead>
-  				<tbody>				
+  			<tbody>				
 				{{#each listFuncionarios}}
 					<tr>
 						<td>{{codFunc}}</td><td>{{nomFunc}}</td><td>{{funcaoFunc}}</td>
@@ -19,8 +25,29 @@
                         </td>
 					</tr>
 				{{/each}}
-				</tbody>
-			</table>
-		</div>
-</template>
-  
+			</tbody>
+	</table>
+ </template>
+
+ <template name="tableListFunc_phone">
+	<table class="table table-phone-font-size">
+				<thead>
+					<tr>
+						<th>Codigo</th><th>Nome</th><th>Função</th>
+					</tr>
+				</thead>
+  			<tbody>				
+				{{#each listFuncionarios}}
+					<tr>
+						<td>{{codFunc}}</td><td>{{nomFunc}}</td><td>{{funcaoFunc}}</td>
+
+						<td>
+                            <button type="button" id="btnDesativar" class="btn btn-danger btn-xs table-btn-font-size">
+                                <span class="glyphicon glyphicon-trash"></span> Deletar
+                            </button>
+                        </td>
+					</tr>
+				{{/each}}
+			</tbody>
+	</table>
+ </template>

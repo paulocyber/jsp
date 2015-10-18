@@ -1,14 +1,11 @@
+new Currency('Brazil', 'BRL', 'R$ ', '%{symbol}%<value>.2f', true);
+currency = Currency.findByCode("BRL");
+
 typeMessages = {'sucesso':'#message-success', 'info':'#message-info', 'aviso':'#message-warning', 'atencao':'#message-danger'};
-/*onbeforeunload = function () {
-    Meteor.logout ();
-}*/
 
-mensagem = function (mensage){	
-	$('.message').text(mensage.mens);
-	$(typeMessages[mensage.tipo]).fadeIn('slow');
-	$(typeMessages[mensage.tipo]).fadeOut(3000);
-};
-
+localidade= 'America/Fortaleza';
+formatoData = 'DD/MM/YYYY';
+formatoHora = 'HH:mm:ss';
 
 //Função comuns 
 atribuirFuncionario = function(){
@@ -64,9 +61,6 @@ zeraCamposProduto = function() {
 	$('#subProd').val('');
 }
 
-new Currency('Brazil', 'BRL', 'R$ ', '%{symbol}%<value>.2f', true);
-currency = Currency.findByCode("BRL");
-
 //posicionar o mouse no primeiro input da tela
 focusInput = function(){
 	$('input:text:visible:first').focus();	
@@ -78,36 +72,37 @@ exibirMessage =function(type,m){
     $(".msg").toggleClass(typeMessege[type]);
 	$('.msg').text(m);
 	$('.msg').fadeIn('slow');
-	$('.msg').fadeOut(4000, function(){
+	$('.msg').fadeOut(2000, function(){
 		$(".msg").toggleClass(typeMessege[type]);
 	});
 	
 };
+mensagem = function (mensage){	
+	$('.message').text(mensage.mens);
+	$(typeMessages[mensage.tipo]).fadeIn('slow');
+	$(typeMessages[mensage.tipo]).fadeOut(2000);
+};
 
 formatDate = function(d){
-	var dataBrasil = ""+d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+	var dataAber = moment(d);
+	var dataBrasil = dataAber.tz(localidade).format(formatoData); 
 	return dataBrasil;
 };
 
 formatHora = function(d){
-	var horaBrasil = acresZero(d.getHours())+":"+acresZero(d.getMinutes());
+	var dataAber = moment(d);
+	var horaBrasil = dataAber.tz(localidade).format(formatoHora);
 	return horaBrasil;
-};
-acresZero = function(n){
-	var number = '';
-	if(n.toString().length<2) 
-		number +="0"+n;
-	else
-		number += n;
-
-	return number;
 };
 
 calcPermanencia = function(d){
-	var dataAtual = new Date(Session.get('horaServe'));
-	var hora = dataAtual.getHours() - d.getHours();
-	var minuto = dataAtual.getMinutes() - d.getMinutes();
-	var permanencia = ""+hora+"h "+minuto+"min";
+	
+	var dataAtual = moment(Session.get('horaServe'));
+	var dataAber = moment(d);
+	var duracaoMinutes = dataAtual.diff(dataAber,'minutes');
+	var minutos = duracaoMinutes%60;
+	var horas = (duracaoMinutes-minutos)/60;
+	var permanencia = horas+"h "+minutos+"min"
 	return permanencia;
 };
 
@@ -118,7 +113,7 @@ obterComanda = function(){
 		historico.textHeader = "Espetinho do Gledson";
 		historico.codGarcomAtend = venda.codGarcomAtend;
 		historico.numeroMesa = venda.numeroMesa;
-		var horAberMesa = new Date(venda.horAberMesa);
+		var horAberMesa = venda.horAberMesa;
 		historico.datVenda = formatDate(horAberMesa);
 		var listaItens = Itens.find({idVenda: venda._id, isCancelado: false});
 

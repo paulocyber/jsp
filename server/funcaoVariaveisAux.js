@@ -33,3 +33,13 @@ if(MapaMesas.find().count()==0){
 }
 
 //-------------------------------------------------------------------------------------------------------------------------
+
+
+validacao = function(){
+   var currentUser = Meteor.userId();
+   if(currentUser){
+      return true;
+   }else{
+      return false;
+   }
+}

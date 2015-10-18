@@ -4,8 +4,14 @@ Template.configuracao.events({
 		event.preventDefault();
 		var password = $('#senha-cancelamento').val();
 
-		Meteor.call('encrypMessage', password, function (error, result) {
+		if(password.length<3){
+			mensagem(new Mensage('aviso','Sua tem que ser de 3 a 6 caracteres'));
+		}else{
+			Meteor.call('encrypMessage', password, function (error, result) {
+				mensagem(result);
+			});
+		}
 
-		});
+		$('#senha-cancelamento').val('');
 	}
 });

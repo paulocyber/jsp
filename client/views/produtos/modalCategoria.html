@@ -1,0 +1,36 @@
+<template name="modalCategoria">
+    <div id="modalCategoria" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close btn-close" data-dismiss="modal">
+              Fechar <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <h4 class="modal-title">Cadastro de Categorias</h4>
+          </div>
+          <div class="modal-body">
+            <span class="msg"></span>
+            <form class="form-modal" id="formCat">
+                <div class="form-group">
+                    <label for="nomeCat">NOME: </label>
+                    <input type="text" required="required" class="custom-input form-control" id="nomeCat"/>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" id="saveCat" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-save"></span> Save
+                    </button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove-sign"></span> Cancel
+                    </button>
+                </div>
+            </form>
+           </div>
+
+        </div>
+      </div>
+    </div>
+    
+</template>

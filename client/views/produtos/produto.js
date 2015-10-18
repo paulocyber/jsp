@@ -51,12 +51,12 @@ Template.addProduto.events({
 	},
 	'click #addCategoria': function(event) {
 		event.preventDefault();
-		modalShow('#addCategoriaModal');
+		Modal.show('modalCategoria');
 	}
 });
 
 //Helpers e Events do template listProduto
-Template.listProduto.helpers({
+Template.tableListProd_desktop.helpers({
 	'listProduto': function() {
 		return Produtos.find({
 			atiProd: true
@@ -66,6 +66,9 @@ Template.listProduto.helpers({
 			}
 		});
 	},
+	'formatDate':function(date){
+		return moment(date).tz(localidade).format(formatoData);
+	},
 	'nomeCat':function(){
 		var catId = this.idCatProd;
 		var categoria =Categorias.findOne(catId);
@@ -74,6 +77,17 @@ Template.listProduto.helpers({
 		return nome;	
 			
 	}
+});
+Template.tableListProd_phone.helpers({
+	'listProduto': function() {
+		return Produtos.find({
+			atiProd: true
+		}, {
+			sort: {
+				codProd: 1
+			}
+		});
+	},
 });
 Template.listProduto.events({
 	'click #btnDesativar': function(event) {
@@ -93,26 +107,24 @@ Template.listProduto.events({
 Template.modalCategoria.events({
 	'click #saveCat': function(event) {
 		event.preventDefault();
-		var data = new Categoria();
-		data.nome = $('#nomeCat').val().toUpperCase();
+		var cat = new Categoria();
+		cat.nome = $('#nomeCat').val().toUpperCase();
 
-		if (Categorias.findOne({nome: data.nome})) {
+		if (Categorias.findOne({nome: cat.nome})) {
 			exibirMessage('atencao','Categoria já cadastrada');
 		} else {
-			Meteor.call('addCategorias', data);
-			modalHide('#addCategoriaModal');
-			ultimoCat = data.nome;
+			Meteor.call('addCategorias', cat, function(error, result){
+				mensagem(result);
+			});
+			Modal.hide();
+			ultimoCat = cat.nome;
 			$('#nomeCat').val('');
 			$('#subProd').focus();
 
 		}
 
 	},
-	'click .btn-close':function(event){
-		event.preventDefault();
-		Session.set('modalOn', false);
-	},
-	'shown.bs.modal #addCategoriaModal': function(){
+	'shown.bs.modal #modalCategoria': function(){
     	$('#nomeCat').focus();	
   	}
 });
