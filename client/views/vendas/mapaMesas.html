@@ -32,7 +32,10 @@
          <span for="datVendaHist">DATA:    </span><label id="datVendaHist">{{histMesa.datVenda}}</label>
          <div class="col-md-12">
             {{> deviceRender 'tableHist'}}
-            <span for="vlrTotalVenda">VALOR TOTAL:    </span><label id="vlrTotalVenda">{{histMesa.vlrTotalVenda}}</label>
+            <span for="vlrTotalVenda">10 % Serviço: </span><input id="dezPorCento" type="checkbox" checked="true">
+            <br/>
+            <br/>
+            <span for="vlrTotalVenda">VALOR TOTAL:    </span><label id="vlrTotalVenda">{{vlrTotalVenda}}</label>
             <br/>
             <span for="vlrPorPessoa">QUANT. PESSOAS:    </span><label id="vlrPorPessoa">{{histMesa.qtdPessoas}}</label>
             <br/>

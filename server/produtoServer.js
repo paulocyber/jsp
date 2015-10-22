@@ -11,7 +11,7 @@ Meteor.publish('Produtos', function() {
 Meteor.methods({
   'adicionarProduto': function(data) {
     if(validacao()){
-        if (Produtos.find().count() == configPlanoBasic.maxQtdProdutos) {      
+        if (Produtos.find({atiProd:true}).count() == configPlanoBasic.maxQtdProdutos) {      
             return  new Mensage('atencao','Quantidade de Produtos no Plano Basico no limite, faça upgrade do seu Plano!');
         } else {
           Produtos.insert(data);

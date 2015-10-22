@@ -1,3 +1,7 @@
+Meteor.publish('Configuracoes',function(){
+    return Configuracoes.find();
+  });
+
 Meteor.methods({
 	'encrypMessage':function(password){
 		if(validacao()){
@@ -22,5 +26,12 @@ Meteor.methods({
 			else
 				return false;
 		}
+	},
+	'salvarCfgComanda':function(title,footer){
+		if(validacao()){
+			Configuracoes.update({},{$set:{titleComanda: title, rodapeComanda: footer}});
+			return new Mensage('sucesso','Titulo e rodape salvo com sucesso');
+		}
+
 	}
 });

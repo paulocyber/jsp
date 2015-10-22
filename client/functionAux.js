@@ -109,8 +109,9 @@ calcPermanencia = function(d){
 obterComanda = function(){
 	var venda = Session.get('selectedVenda');
 	var historico = new Historico();
+	var configuracao = Configuracoes.findOne({});
 	if(venda){
-		historico.textHeader = "Espetinho do Gledson";
+		historico.textHeader = configuracao.titleComanda;
 		historico.codGarcomAtend = venda.codGarcomAtend;
 		historico.numeroMesa = venda.numeroMesa;
 		var horAberMesa = venda.horAberMesa;
@@ -141,9 +142,10 @@ obterComanda = function(){
 		historico.vlrPorPessoa = currency.toStr(vlrPorPessoa);
 		historico.horAberMesa = formatHora(horAberMesa);
 		historico.temPermanencia = calcPermanencia(horAberMesa);
-		historico.textFooter = "iRest - uBasic - Versão 1.00"
+		historico.textFooter = configuracao.rodapeComanda;
 		}
 	}
+
 
 	return historico;
 };

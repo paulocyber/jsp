@@ -34,11 +34,15 @@ Template.mapaMesas.events({
 		mesa.estado = this.estado;
 		mesa.numero = this.numero;
 		Session.set('selectedMesa', mesa);
+		Session.set('historico', obterComanda());
+		var historico = Session.get('historico');
+		Session.set('vlrTotalVendaIncial', historico.vlrTotalVenda);
 		
 		if (mesa.estado == estadoLivre) {
 			$('#codGarcomAtend').val('');
 			$('#qtdPessoas').val('');
 			$('#nomeGarcom').text('');
+
 
 			/*Devido ao problema do botão voltar do navegador e 
 			botão voltar dos celulares samsung tiver que add um
@@ -48,6 +52,7 @@ Template.mapaMesas.events({
 			Session.set('selectedVenda', '');
 
 		} else if (mesa.estado == estadoOcupado) {
+			
 			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
 			Meteor.call('horaServe', function (error, result) {
 				Session.set('horaServe', result);
@@ -227,6 +232,7 @@ Template.bloqueioMesa.events({
 	},	
 });
 
+dezPorCento=false;
 
 Template.historico.helpers({
 	'hasVendaMesa':function(){
@@ -236,16 +242,30 @@ Template.historico.helpers({
 		}else false;
 	},
 	'histMesa': function() {
-		var historico = obterComanda();
+		var historico = Session.get('historico');
 		Session.set('listaItens', historico.listItens);
 		return historico;
+	},
+	'vlrTotalVenda':function(){
+		return Session.get('vlrTotalVenda');
 	}
 });
 Template.historico.events({
 	'click #btn-cancelar-item': function () {
 		Session.set('itemCancelar', this._id);
 		Modal.show('cancelamentoItemModal');
-	}
+	},
+	'click [type=checkbox]': function(event){
+		 
+		if(event.target.checked){
+		 	var somaTotalVenda = currency.parseStr( Session.get('vlrTotalVendaIncial'));
+			somaTotalVenda = currency.toStr(somaTotalVenda+(somaTotalVenda*0.10));
+			Session.set('vlrTotalVenda',somaTotalVenda); 			
+		}else{
+			var somaTotalVenda = Session.get('vlrTotalVendaIncial');
+			Session.set('vlrTotalVenda',somaTotalVenda);
+		}
+ 	}
 });
 
 Template.tableHist_desktop.helpers({

@@ -1,14 +1,10 @@
-
+obterListProd = function(){
+	return Produtos.find({atiProd: true}, {sort: {desProd: 1}});
+}
 //Helpers e Events do template listProduto
 Template.tableListProd_desktop.helpers({
 	listProduto: function() {
-		return Produtos.find({
-			atiProd: true
-		}, {
-			sort: {
-				codProd: 1
-			}
-		});
+		return obterListProd();
 	},
 	formatDate:function(date){
 		return moment(date).tz(localidade).format(formatoData);
@@ -31,13 +27,7 @@ Template.tableListProd_desktop.helpers({
 
 Template.tableListProd_phone.helpers({
 	listProduto: function() {
-		return Produtos.find({
-			atiProd: true
-		}, {
-			sort: {
-				codProd: 1
-			}
-		});
+		return obterListProd();
 	},
 	formatCurrency:function(valor){
 		return currency.toStr(valor);

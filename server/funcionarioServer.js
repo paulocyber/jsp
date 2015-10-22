@@ -5,7 +5,7 @@ Meteor.publish('Funcionarios',function(){
 Meteor.methods({
     'adicionarFuncionario': function(data){
       if(validacao()){
-        if(Funcionarios.find().count()==configPlanoBasic.maxFuncionarios){
+        if(Funcionarios.find({atiFunc: true}).count()==configPlanoBasic.maxFuncionarios){
           return new Mensage('atencao','Quantidade de funcionários no Plano Basico no limite, faça upgrade do seu Plano!');
         }else{
           Funcionarios.insert(data);  
