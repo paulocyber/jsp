@@ -47,7 +47,7 @@ Template.addProduto.events({
 		var cusProd = new Number($('#cusProd').val());
 		var marProd = new Number($('#marProd').val());
 		var preProd = marProd * cusProd / 100 + cusProd;
-		$('#preProd').val(preProd.toFixed(1));
+		$('#preProd').val(preProd.toFixed(2));
 	},
 	'click #addCategoria': function(event) {
 		event.preventDefault();
@@ -55,52 +55,6 @@ Template.addProduto.events({
 	}
 });
 
-//Helpers e Events do template listProduto
-Template.tableListProd_desktop.helpers({
-	'listProduto': function() {
-		return Produtos.find({
-			atiProd: true
-		}, {
-			sort: {
-				codProd: 1
-			}
-		});
-	},
-	'formatDate':function(date){
-		return moment(date).tz(localidade).format(formatoData);
-	},
-	'nomeCat':function(){
-		var catId = this.idCatProd;
-		var categoria =Categorias.findOne(catId);
-		var nome =  categoria && categoria.nome;
-
-		return nome;	
-			
-	}
-});
-Template.tableListProd_phone.helpers({
-	'listProduto': function() {
-		return Produtos.find({
-			atiProd: true
-		}, {
-			sort: {
-				codProd: 1
-			}
-		});
-	},
-});
-Template.listProduto.events({
-	'click #btnDesativar': function(event) {
-		event.preventDefault();
-		var idProd = this._id;
-		var confirm = window.confirm('Tem certeza que deseja DELETAR?');
-		if (confirm) {
-			Meteor.call('desativarProduto', idProd, function(error, result){
-				mensagem(result);
-			});
-		}
-	}
-});
 
 //Helpers e Events do template modal para produto
 

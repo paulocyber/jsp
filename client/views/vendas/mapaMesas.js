@@ -116,15 +116,27 @@ Template.incluirProduto.events({
 
 		if(produto){
 			var item = new Item();
+			
+			Meteor.call('horaServe', function (error, result) {
+				Session.set('horaServe', result);
+			});
+
 			item.idVenda= venda._id;
 			item.idProd= produto._id;
 			item.idObsItem = observacao._id;
 			item.qtdProdItem = qtdProdItem;
-			item.vlrTotal = produto.preProd *qtdProdItem; 
-			Meteor.call('incluirProduto', item, function (error, result) {
+			item.vlrTotal = produto.preProd *qtdProdItem;
 
+			item.criado = Session.get('horaServe');
+			
+			Meteor.call('incluirProduto', item, function (error, result) {
+				if(result){
+					exibirMessage('sucesso','Item incluido com sucesso!');		
+				}else{
+					exibirMessage('atencao','Item não pode ser incluído!');		
+				}
 			});
-			exibirMessage('sucesso','Item incluido com sucesso!');
+			
 		}else exibirMessage('atencao','Produto NÃO EXISTE');
 		
 		$('#codProd').val('');
@@ -210,31 +222,10 @@ Template.bloqueioMesa.events({
 		
 	},
 	'click #encerrar':function(){
-		var mesa = Session.get('selectedMesa');
-		var venda = Session.get('selectedVenda');
-        var historico = obterComanda();
-
-        venda.temPermanencia = historico.temPermanencia;
-        venda.horSaiMesa = new Date(Session.get('horaServe'));
-        venda.vlrTotal = currency.parseStr(historico.vlrTotalVenda);
-        venda.atiVenda = false;
-
-		Modal.hide('bloqueioMesa');
-		Meteor.call('editarEstadoMesa', mesa._id, estadoLivre,function (error, result) {
-
-		});
-		Meteor.call('encerrarVenda', venda, function (error, result) {
-
-		});
-		Session.set('selectedVenda','');
+		Modal.hide();
+		Modal.show('encerrarMesaModal');
 	},	
 });
-
-
-
-
-
-
 
 
 Template.historico.helpers({
@@ -289,5 +280,39 @@ Template.cancelamentoItemModal.events({
 		});
 		Modal.hide();
 		$('#senha-cancelamento').val('');
+	}
+});
+
+Template.encerrarMesaModal.events({
+	'submit #form-encerrar': function (event){
+		event.preventDefault();
+		var mesa = Session.get('selectedMesa');
+		var venda = Session.get('selectedVenda');
+        var historico = obterComanda();
+
+        venda.temPermanencia = historico.temPermanencia;
+        venda.horSaiMesa = new Date(Session.get('horaServe'));
+        venda.vlrTotal = currency.parseStr(historico.vlrTotalVenda);
+        venda.atiVenda = false;
+
+		var password = $('#senha-encerrar').val();
+
+		Meteor.call('equalsSenha', password,function (error, result) {
+			if(result){
+				Meteor.call('editarEstadoMesa', mesa._id, estadoLivre,function (error, result) {
+
+				});
+				Meteor.call('encerrarVenda', venda, function (error, result) {
+					mensagem(result);
+				});		
+			}else{
+				mensagem(new Mensage('atencao','Senha invalida!!!'));
+			}
+		});
+		Modal.hide();
+		$('#senha-encerrar').val('');		
+
+		Modal.hide();
+		Session.set('selectedVenda','');
 	}
 });

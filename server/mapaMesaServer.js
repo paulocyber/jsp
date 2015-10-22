@@ -21,18 +21,19 @@ Meteor.methods({
 });
 
 Meteor.methods({
-  'iniciarVenda':function(data){      
+  'iniciarVenda':function(venda){      
       if(validacao()){
-          data.horAberMesa = new Date();
-          data.atiVenda = true;
-          Vendas.insert(data);
+          venda.horAberMesa = new Date();
+          venda.atiVenda = true;
+          Vendas.insert(venda);
           return new Mensage ('sucesso',"Mesa aberta com sucesso!");  
       }     
     },
-    'incluirProduto': function(data){
+    'incluirProduto': function(item){
         if(validacao()){
-            data.isCancelado = false;
-            Itens.insert(data);
+            item.isCancelado = false;
+            Itens.insert(item);
+            return true; 
         }
     },
     'encerrarVenda': function(venda){
@@ -45,6 +46,7 @@ Meteor.methods({
                 atiVenda: venda.atiVenda 
                 }
             });
+            return new Mensage('sucesso','Mesa encerrada!');
         } 
     },
     'horaServe':function(){
@@ -61,9 +63,9 @@ Meteor.methods({
 });
 
 Meteor.methods({
-  'addObservacao':function(data){
+  'addObservacao':function(obs){
         if(validacao()){
-            Observacoes.insert(data);
+            Observacoes.insert(obs);
         }
     }
 });

@@ -36,7 +36,17 @@
 								<li><a href="#"> Listar</a></li>
 							</ul>
 						</li>
-						<li><a class="active" href="{{pathFor route='configuracao'}}">Configuração</a></li>
+						<!--li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Acomp. Pedidos</a>
+							<ul class="dropdown-menu">
+							{{#each categorias}}
+								<li><a id="{{nome}}" href="{{pathFor route='acompanhamentoPedidos'}}">{{nome}}</a></li>
+							{{/each}}
+							</ul>
+						</li>-->
+						<li>
+							<a class="active" href="{{pathFor route='configuracao'}}">Configuração</a>
+						</li>
 
 					</ul>
 
