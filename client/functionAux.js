@@ -108,7 +108,7 @@ calcPermanencia = function(d){
 
 obterComanda = function(){
 	var venda = Session.get('selectedVenda');
-	var historico = new Historico();
+	var historico = new Comanda();
 	var configuracao = Configuracoes.findOne({});
 	if(venda){
 		historico.textHeader = configuracao.titleComanda;
@@ -122,7 +122,7 @@ obterComanda = function(){
 		var somaTotalVenda = 0;
 		var i = 1;
 		listaItens.forEach(function (item) {
-			var itemHistorico = new ItemHistorico();
+			var itemHistorico = new ItemComanda();
 			itemHistorico._id = item._id;
 			itemHistorico.seqItem = i;
 			var produto = Produtos.findOne({_id: item.idProd});
@@ -168,4 +168,19 @@ modalShow = function(nameModal){
 modalHide = function(nameModal){
 		Session.set("modalOn", false);
 		$(nameModal).modal('hide');
+};
+
+var TXSER = 0.10;
+
+addTaxaServico = function(moneyCurrency){
+	var valor = currency.parseStr(moneyCurrency);
+	valor = currency.toStr(valor+(valor*TXSER));
+
+	return valor;
+};
+vlrTaxaServico = function(moneyCurrency){
+	var valor = currency.parseStr(moneyCurrency);
+	valor = currency.toStr(valor*TXSER);
+
+	return valor;
 };

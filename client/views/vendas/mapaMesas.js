@@ -34,9 +34,6 @@ Template.mapaMesas.events({
 		mesa.estado = this.estado;
 		mesa.numero = this.numero;
 		Session.set('selectedMesa', mesa);
-		Session.set('historico', obterComanda());
-		var historico = Session.get('historico');
-		Session.set('vlrTotalVendaIncial', historico.vlrTotalVenda);
 		
 		if (mesa.estado == estadoLivre) {
 			$('#codGarcomAtend').val('');
@@ -242,12 +239,23 @@ Template.historico.helpers({
 		}else false;
 	},
 	'histMesa': function() {
-		var historico = Session.get('historico');
+		var historico = obterComanda();
 		Session.set('listaItens', historico.listItens);
+		if(Session.get('taxaServico')){
+			historico.taxaServico = vlrTaxaServico(historico.vlrTotalVenda);
+			var vlrTotal = addTaxaServico(historico.vlrTotalVenda);
+			Session.set('vlrTotal', vlrTotal);
+		}else{
+			Session.set('vlrTotal', historico.vlrTotalVenda);
+		}
+
 		return historico;
 	},
-	'vlrTotalVenda':function(){
-		return Session.get('vlrTotalVenda');
+	'checkedIF':function(){
+		return Session.get('taxaServico');
+	},
+	'vlrTotal':function(){
+		return Session.get('vlrTotal');
 	}
 });
 Template.historico.events({
@@ -255,16 +263,8 @@ Template.historico.events({
 		Session.set('itemCancelar', this._id);
 		Modal.show('cancelamentoItemModal');
 	},
-	'click [type=checkbox]': function(event){
-		 
-		if(event.target.checked){
-		 	var somaTotalVenda = currency.parseStr( Session.get('vlrTotalVendaIncial'));
-			somaTotalVenda = currency.toStr(somaTotalVenda+(somaTotalVenda*0.10));
-			Session.set('vlrTotalVenda',somaTotalVenda); 			
-		}else{
-			var somaTotalVenda = Session.get('vlrTotalVendaIncial');
-			Session.set('vlrTotalVenda',somaTotalVenda);
-		}
+	'change [type=checkbox]': function(event){
+		Session.set('taxaServico',event.target.checked); 			
  	}
 });
 
