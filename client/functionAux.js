@@ -150,6 +150,21 @@ obterComanda = function(){
 	return historico;
 };
 
+obterItemComanda= function(item){
+	var itemAcom = new ItemAcom();
+	var produto = Produtos.findOne({_id: item.idProd});
+	var observacao = Observacoes.findOne({_id: item.idObsItem});
+	if(produto){
+		var categoria = Categorias.findOne({_id: produto.idCatProd});
+		itemAcom.desProd = produto.desProd;
+		itemAcom.catProd = categoria.nome;
+		itemAcom.obsItem = observacao.nome;
+		var d = moment(item.criado)
+		itemAcom.criado  = d.tz(localidade).format(formatoHora);
+	}
+	return itemAcom;
+};
+
 modalShow = function(nameModal){
 		Session.set("modalOn", true);
 		 	// Ativa escuta por keyup no modal

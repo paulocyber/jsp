@@ -138,6 +138,10 @@ Template.incluirProduto.events({
 					exibirMessage('atencao','Item não pode ser incluído!');		
 				}
 			});
+
+			Meteor.call('print', obterItemComanda(item), function (error, result) {
+
+			});
 			
 		}else exibirMessage('atencao','Produto NÃO EXISTE');
 		
@@ -226,6 +230,7 @@ Template.bloqueioMesa.events({
 	'click #encerrar':function(){
 		Modal.hide();
 		Modal.show('encerrarMesaModal');
+		$('#senha-encerrar').focus();
 	},	
 });
 
@@ -262,6 +267,7 @@ Template.historico.events({
 	'click #btn-cancelar-item': function () {
 		Session.set('itemCancelar', this._id);
 		Modal.show('cancelamentoItemModal');
+		$('#senha-cancelamentos').focus();
 	},
 	'change [type=checkbox]': function(event){
 		Session.set('taxaServico',event.target.checked); 			
@@ -300,7 +306,10 @@ Template.cancelamentoItemModal.events({
 		});
 		Modal.hide();
 		$('#senha-cancelamento').val('');
-	}
+	},
+	'shown.bs.modal  #cancelamentoItemModal': function(){
+     	$('#senha-cancelamento').focus();
+  	}
 });
 
 Template.encerrarMesaModal.events({
@@ -334,5 +343,8 @@ Template.encerrarMesaModal.events({
 
 		Modal.hide();
 		Session.set('selectedVenda','');
-	}
+	},
+	'shown.bs.modal  #encerrarMesaModal': function(){
+     	$('#senha-encerrar').focus();
+  	}
 });
