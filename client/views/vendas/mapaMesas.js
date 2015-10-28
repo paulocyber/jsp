@@ -155,7 +155,12 @@ Template.incluirProduto.events({
 	'click #bloqueio':function(){
 		var mesa = Session.get('selectedMesa');
 		Modal.hide('incluirProduto');
-		Meteor.call('editarEstadoMesa', mesa._id, estadoBoqueado,function (error, result) {});
+		Meteor.call('editarEstadoMesa', mesa._id, estadoBoqueado,function (error, result) {
+
+		});
+		Meteor.call('print', obterComanda(), function (error, result) {
+
+		});
 	},
 	'keyup #codProd':function(){
 		var codProd = $('#codProd').val();
@@ -246,21 +251,19 @@ Template.historico.helpers({
 	'histMesa': function() {
 		var historico = obterComanda();
 		Session.set('listaItens', historico.listItens);
-		if(Session.get('taxaServico')){
-			historico.taxaServico = vlrTaxaServico(historico.vlrTotalVenda);
-			var vlrTotal = addTaxaServico(historico.vlrTotalVenda);
-			Session.set('vlrTotal', vlrTotal);
-		}else{
-			Session.set('vlrTotal', historico.vlrTotalVenda);
-		}
-
 		return historico;
 	},
-	'checkedIF':function(){
-		return Session.get('taxaServico');
+	'iconTaxa':function(){
+		if(Session.get('taxaServico'))
+			return 'glyphicon-minus'
+		else
+			return 'glyphicon-plus'
 	},
-	'vlrTotal':function(){
-		return Session.get('vlrTotal');
+	'corBtn':function(){
+		if(Session.get('taxaServico'))
+			return 'btn-danger'
+		else
+			return 'btn-primary'
 	}
 });
 Template.historico.events({
@@ -269,8 +272,17 @@ Template.historico.events({
 		Modal.show('cancelamentoItemModal');
 		$('#senha-cancelamentos').focus();
 	},
-	'change [type=checkbox]': function(event){
-		Session.set('taxaServico',event.target.checked); 			
+	'click #btn-taxa-servico': function(event){
+		//Modal.show('confirmacaoModal');
+		//if(Session.get('confirmacao')){
+			if(Session.get('taxaServico')){
+				Session.set('taxaServico',false); 
+			}
+			else{
+				Session.set('taxaServico',true); 		
+			}
+			Session.set('confirmacao', false);
+		//}		
  	}
 });
 
@@ -345,6 +357,29 @@ Template.encerrarMesaModal.events({
 		Session.set('selectedVenda','');
 	},
 	'shown.bs.modal  #encerrarMesaModal': function(){
+     	$('#senha-encerrar').focus();
+  	}
+});
+
+Template.confirmacaoModal.events({
+	'submit #form-confirmacao': function (event){
+		event.preventDefault();
+		
+		var password = $('#senha-encerrar').val();
+
+		Meteor.call('equalsSenha', password,function (error, result) {
+			if(result){
+				Session.set('confirmacao', true);
+			}else{
+				mensagem(new Mensage('atencao','Senha invalida!!!'));
+			}
+		});
+		Modal.hide();
+		$('#senha-encerrar').val('');		
+
+		Modal.hide();
+	},
+	'shown.bs.modal  #confirmacaoModal': function(){
      	$('#senha-encerrar').focus();
   	}
 });

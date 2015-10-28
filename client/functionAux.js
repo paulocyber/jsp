@@ -109,6 +109,7 @@ calcPermanencia = function(d){
 obterComanda = function(){
 	var venda = Session.get('selectedVenda');
 	var historico = new Comanda();
+	historico.tipo = 'comanda';
 	var configuracao = Configuracoes.findOne({});
 	if(venda){
 		historico.textHeader = configuracao.titleComanda;
@@ -142,7 +143,14 @@ obterComanda = function(){
 		historico.vlrPorPessoa = currency.toStr(vlrPorPessoa);
 		historico.horAberMesa = formatHora(horAberMesa);
 		historico.temPermanencia = calcPermanencia(horAberMesa);
-		historico.textFooter = configuracao.rodapeComanda;
+		historico.textFooter = configuracao.rodapeComanda;		
+		if(Session.get('taxaServico')){
+			historico.taxaServico = vlrTaxaServico(historico.vlrTotalVenda);
+			var vlrTotal = addTaxaServico(historico.vlrTotalVenda);
+			historico.vlrTotalVenda = vlrTotal;
+		}else{
+			historico.vlrTotalVenda = remTaxaServico(historico.vlrTotalVenda, historico.taxaServico)
+		}
 		}
 	}
 
@@ -152,12 +160,14 @@ obterComanda = function(){
 
 obterItemComanda= function(item){
 	var itemAcom = new ItemAcom();
+	itemAcom.tipo = 'item';
 	var produto = Produtos.findOne({_id: item.idProd});
 	var observacao = Observacoes.findOne({_id: item.idObsItem});
 	if(produto){
 		var categoria = Categorias.findOne({_id: produto.idCatProd});
 		itemAcom.desProd = produto.desProd;
 		itemAcom.catProd = categoria.nome;
+		itemAcom.qtdProdItem= item.qtdProdItem;
 		itemAcom.obsItem = observacao.nome;
 		var d = moment(item.criado)
 		itemAcom.criado  = d.tz(localidade).format(formatoHora);
@@ -190,12 +200,14 @@ var TXSER = 0.10;
 addTaxaServico = function(moneyCurrency){
 	var valor = currency.parseStr(moneyCurrency);
 	valor = currency.toStr(valor+(valor*TXSER));
-
 	return valor;
+};
+remTaxaServico = function(vlrTotalVenda,taxaServico){
+	var valor = currency.parseStr(vlrTotalVenda)-currency.parseStr(taxaServico);	
+	return currency.toStr(valor);
 };
 vlrTaxaServico = function(moneyCurrency){
 	var valor = currency.parseStr(moneyCurrency);
 	valor = currency.toStr(valor*TXSER);
-
 	return valor;
 };

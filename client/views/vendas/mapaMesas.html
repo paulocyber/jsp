@@ -34,10 +34,12 @@
             {{> deviceRender 'tableHist'}}
             <p id="taxaServico" class="text-center">Taxa de serviço: {{histMesa.taxaServico}}</p>
             <br/>
-            <span for="vlrTotalVenda">10 % Serviço: </span><input id="dezPorCento" type="checkbox" checked="{{checkedIF}}">
+            <button type="button" id="btn-taxa-servico" class="btn {{corBtn}}">
+                <span class="glyphicon {{iconTaxa}}"></span> 10%
+            </button>
             <br/>
             <br/>
-            <span for="vlrTotalVenda">VALOR TOTAL:    </span><label id="vlrTotalVenda">{{vlrTotal}}</label>
+            <span for="vlrTotalVenda">VALOR TOTAL:    </span><label id="vlrTotalVenda">{{histMesa.vlrTotalVenda}}</label>
             <br/>
             <span for="vlrPorPessoa">QUANT. PESSOAS:    </span><label id="vlrPorPessoa">{{histMesa.qtdPessoas}}</label>
             <br/>
