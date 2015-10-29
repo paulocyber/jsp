@@ -137,20 +137,20 @@ obterComanda = function(){
 			historico.listItens.push(itemHistorico);	
 			i+=1;
 		});
-		historico.vlrTotalVenda =  currency.toStr(somaTotalVenda);
+		historico.vlrTotalItens =  currency.toStr(somaTotalVenda);
 		historico.qtdPessoas = venda.qtdPessoas;
-		var vlrPorPessoa = somaTotalVenda / historico.qtdPessoas;
-		historico.vlrPorPessoa = currency.toStr(vlrPorPessoa);
 		historico.horAberMesa = formatHora(horAberMesa);
 		historico.temPermanencia = calcPermanencia(horAberMesa);
 		historico.textFooter = configuracao.rodapeComanda;		
 		if(Session.get('taxaServico')){
-			historico.taxaServico = vlrTaxaServico(historico.vlrTotalVenda);
-			var vlrTotal = addTaxaServico(historico.vlrTotalVenda);
+			historico.taxaServico = vlrTaxaServico(historico.vlrTotalItens);
+			var vlrTotal = addTaxaServico(historico.vlrTotalItens);
 			historico.vlrTotalVenda = vlrTotal;
 		}else{
-			historico.vlrTotalVenda = remTaxaServico(historico.vlrTotalVenda, historico.taxaServico)
+			historico.vlrTotalVenda = historico.vlrTotalItens;
 		}
+		var vlrPorPessoa = currency.parseStr(historico.vlrTotalVenda) / historico.qtdPessoas;
+		historico.vlrPorPessoa = currency.toStr(vlrPorPessoa);
 		}
 	}
 

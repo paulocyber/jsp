@@ -83,7 +83,8 @@ Template.aberturaMesa.events({
 			Meteor.call('editarEstadoMesa', mesa._id, estadoOcupado);
 			Meteor.call('iniciarVenda',venda, function (error, result){
 				mensagem(result);
-			});	
+			});
+			Session.set('taxaServico',true);
 		}else{
 			exibirMessage('atencao','Garçom NÃO EXISTE');
 		}				
@@ -239,91 +240,6 @@ Template.bloqueioMesa.events({
 	},	
 });
 
-dezPorCento=false;
-
-Template.historico.helpers({
-	'hasVendaMesa':function(){
-		var venda = Session.get('selectedVenda');
-		if(venda){
-			return true;
-		}else false;
-	},
-	'histMesa': function() {
-		var historico = obterComanda();
-		Session.set('listaItens', historico.listItens);
-		return historico;
-	},
-	'iconTaxa':function(){
-		if(Session.get('taxaServico'))
-			return 'glyphicon-minus'
-		else
-			return 'glyphicon-plus'
-	},
-	'corBtn':function(){
-		if(Session.get('taxaServico'))
-			return 'btn-danger'
-		else
-			return 'btn-primary'
-	}
-});
-Template.historico.events({
-	'click #btn-cancelar-item': function () {
-		Session.set('itemCancelar', this._id);
-		Modal.show('cancelamentoItemModal');
-		$('#senha-cancelamentos').focus();
-	},
-	'click #btn-taxa-servico': function(event){
-		//Modal.show('confirmacaoModal');
-		//if(Session.get('confirmacao')){
-			if(Session.get('taxaServico')){
-				Session.set('taxaServico',false); 
-			}
-			else{
-				Session.set('taxaServico',true); 		
-			}
-			Session.set('confirmacao', false);
-		//}		
- 	}
-});
-
-Template.tableHist_desktop.helpers({
-	'Itens': function () {
-		var itensHist = Session.get('listaItens');
-		return itensHist;
-	}
-});
-
-Template.tableHist_phone.helpers({
-	'Itens': function () {
-		var itensHist = Session.get('listaItens');
-		return itensHist;
-	}
-});
-
-Template.cancelamentoItemModal.events({
-	'submit #formCancel': function (event){
-		event.preventDefault();
-
-		var itemId = Session.get('itemCancelar');
-		var password = $('#senha-cancelamento').val();
-
-		Meteor.call('equalsSenha', password,function (error, result) {
-			if(result){
-				Meteor.call('cancelarItem',itemId ,function (error, result) {
-					return mensagem(result);
-				});		
-			}else{
-				mensagem(new Mensage('atencao','Senha invalida!!!'));
-			}
-		});
-		Modal.hide();
-		$('#senha-cancelamento').val('');
-	},
-	'shown.bs.modal  #cancelamentoItemModal': function(){
-     	$('#senha-cancelamento').focus();
-  	}
-});
-
 Template.encerrarMesaModal.events({
 	'submit #form-encerrar': function (event){
 		event.preventDefault();
@@ -343,43 +259,28 @@ Template.encerrarMesaModal.events({
 				Meteor.call('editarEstadoMesa', mesa._id, estadoLivre,function (error, result) {
 
 				});
+				var confirm = window.confirm('Tem certeza que deseja DELETAR?');
+				if (confirm) {
+					Meteor.call('print', obterComanda(), function (error, result) {
+
+					});
+				}
 				Meteor.call('encerrarVenda', venda, function (error, result) {
 					mensagem(result);
-				});		
+				});
+				Session.set('selectedVenda','');
 			}else{
 				mensagem(new Mensage('atencao','Senha invalida!!!'));
+				Session.set('selectedVenda','');
 			}
 		});
 		Modal.hide();
 		$('#senha-encerrar').val('');		
 
 		Modal.hide();
-		Session.set('selectedVenda','');
-	},
+		},
 	'shown.bs.modal  #encerrarMesaModal': function(){
      	$('#senha-encerrar').focus();
   	}
 });
 
-Template.confirmacaoModal.events({
-	'submit #form-confirmacao': function (event){
-		event.preventDefault();
-		
-		var password = $('#senha-encerrar').val();
-
-		Meteor.call('equalsSenha', password,function (error, result) {
-			if(result){
-				Session.set('confirmacao', true);
-			}else{
-				mensagem(new Mensage('atencao','Senha invalida!!!'));
-			}
-		});
-		Modal.hide();
-		$('#senha-encerrar').val('');		
-
-		Modal.hide();
-	},
-	'shown.bs.modal  #confirmacaoModal': function(){
-     	$('#senha-encerrar').focus();
-  	}
-});

@@ -4,6 +4,7 @@ Meteor.methods({
 			{ 
 				data:data,
 				headers:{"content-type":"application/json"}
-		});	
+		});
 	}
+
 });
