@@ -72,7 +72,7 @@ exibirMessage =function(type,m){
     $(".msg").toggleClass(typeMessege[type]);
 	$('.msg').text(m);
 	$('.msg').fadeIn('slow');
-	$('.msg').fadeOut(2000, function(){
+	$('.msg').fadeOut(3000, function(){
 		$(".msg").toggleClass(typeMessege[type]);
 	});
 	
@@ -80,7 +80,7 @@ exibirMessage =function(type,m){
 mensagem = function (mensage){	
 	$('.message').text(mensage.mens);
 	$(typeMessages[mensage.tipo]).fadeIn('slow');
-	$(typeMessages[mensage.tipo]).fadeOut(2000);
+	$(typeMessages[mensage.tipo]).fadeOut(3000);
 };
 
 formatDate = function(d){

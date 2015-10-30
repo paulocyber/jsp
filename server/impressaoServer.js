@@ -6,9 +6,9 @@ Meteor.methods({
 					data:data,
 					headers:{"content-type":"application/json"}
 				});
-			return new Mensage ('sucesso',"impress√£o realiza!");
+			return new Mensage ('sucesso',"impress„o realiza!");
 		}catch(e){
-			return new Mensage ('atencao',"servidor de impress√£o n√£o encontrado!");
+			return new Mensage ('atencao',"servidor de impress„o n„o encontrado!");
 		}
 	}
 });

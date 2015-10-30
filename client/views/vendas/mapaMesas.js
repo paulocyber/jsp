@@ -68,7 +68,6 @@ Template.aberturaMesa.events({
 		event.preventDefault();
 		var mesa = Session.get('selectedMesa');
 		var codGarcomAtend = $('#codGarcomAtend').val();
-		var qtdPessoas = parseInt($('#qtdPessoas').val());
 		var isCodGarcomAtend = Funcionarios.findOne({codFunc: codGarcomAtend});
 
 		if(isCodGarcomAtend){
@@ -76,7 +75,6 @@ Template.aberturaMesa.events({
 
 			venda.numeroMesa = mesa.numero;
 			venda.codGarcomAtend = codGarcomAtend;
-			venda.qtdPessoas = qtdPessoas;
 
 			Modal.hide('mapaMesas');
 
@@ -155,13 +153,11 @@ Template.incluirProduto.events({
 	},
 	'click #bloqueio':function(){
 		var mesa = Session.get('selectedMesa');
-		Modal.hide('incluirProduto');
+		Modal.hide();
 		Meteor.call('editarEstadoMesa', mesa._id, estadoBoqueado,function (error, result) {
 
 		});
-		Meteor.call('print', obterComanda(), function (error, result) {
-			mensagem(result);
-		});
+		Modal.show('qtdPessoasModal');
 	},
 	'keyup #codProd':function(){
 		var codProd = $('#codProd').val();
@@ -259,6 +255,7 @@ Template.encerrarMesaModal.events({
 				Meteor.call('editarEstadoMesa', mesa._id, estadoLivre,function (error, result) {
 
 				});
+				Modal.hide();
 				var confirm = window.confirm('Desejar imprimir cupom?');
 				if (confirm) {
 					Meteor.call('print', obterComanda(), function (error, result) {
@@ -274,7 +271,6 @@ Template.encerrarMesaModal.events({
 				Session.set('selectedVenda','');
 			}
 		});
-		Modal.hide();
 		},
 	'shown.bs.modal  #encerrarMesaModal': function(){
      	$('#senha-encerrar').focus();
