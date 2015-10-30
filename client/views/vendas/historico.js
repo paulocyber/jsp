@@ -96,7 +96,7 @@ Template.retirarTaxaServico.events({
 
         Modal.hide();
     },
-    'shown.bs.modal  #confirmacaoModal': function(){
+    'shown.bs.modal  #retirarTaxaServico': function(){
         $('#senha-encerrar').focus();
     }
 });

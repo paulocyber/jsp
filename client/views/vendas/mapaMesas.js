@@ -141,7 +141,7 @@ Template.incluirProduto.events({
 			});
 
 			Meteor.call('print', obterItemComanda(item), function (error, result) {
-
+				mensagem(result);
 			});
 			
 		}else exibirMessage('atencao','Produto NÃO EXISTE');
@@ -160,7 +160,7 @@ Template.incluirProduto.events({
 
 		});
 		Meteor.call('print', obterComanda(), function (error, result) {
-
+			mensagem(result);
 		});
 	},
 	'keyup #codProd':function(){
@@ -259,10 +259,10 @@ Template.encerrarMesaModal.events({
 				Meteor.call('editarEstadoMesa', mesa._id, estadoLivre,function (error, result) {
 
 				});
-				var confirm = window.confirm('Tem certeza que deseja DELETAR?');
+				var confirm = window.confirm('Desejar imprimir cupom?');
 				if (confirm) {
 					Meteor.call('print', obterComanda(), function (error, result) {
-
+						mensagem(result);
 					});
 				}
 				Meteor.call('encerrarVenda', venda, function (error, result) {
@@ -274,9 +274,6 @@ Template.encerrarMesaModal.events({
 				Session.set('selectedVenda','');
 			}
 		});
-		Modal.hide();
-		$('#senha-encerrar').val('');		
-
 		Modal.hide();
 		},
 	'shown.bs.modal  #encerrarMesaModal': function(){
