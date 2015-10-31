@@ -49,6 +49,24 @@ Meteor.methods({
             return new Mensage('sucesso','Mesa encerrada!');
         } 
     },
+    'retirarTaxaServ':function(venda){
+        if(validacao()){
+            Vendas.update({_id: venda._id},{$set:
+                {
+                    taxaServico: venda.taxaServico,
+                }
+            });
+        }
+    },
+    'addQtdPessoas':function(venda){
+        if(validacao()) {
+            Vendas.update({_id: venda._id}, {
+                $set: {
+                    qtdPessoas: venda.qtdPessoas,
+                }
+            });
+        }
+    },
     'horaServe':function(){
         if(validacao()){
             return new Date();

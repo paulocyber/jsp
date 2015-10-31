@@ -39,7 +39,7 @@ Template.addProduto.events({
 		var cusProd = $('#cusProd').val();
 		var preProd = $('#preProd').val();
 		var marProd = (preProd / cusProd * 100) - 100;
-		$('#marProd').val(parseInt(marProd));
+		$('#marProd').val(parseFloat(marProd).toFixed(2));
 	},
 
 	'keyup #marProd': function(event) {

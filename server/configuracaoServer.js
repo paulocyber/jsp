@@ -27,9 +27,16 @@ Meteor.methods({
 				return false;
 		}
 	},
-	'salvarCfgComanda':function(title,footer){
+	'salvarTitulo':function(title){
 		if(validacao()){
-			Configuracoes.update({},{$set:{titleComanda: title, rodapeComanda: footer}});
+			Configuracoes.update({},{$set:{titleComanda: title}});
+			return new Mensage('sucesso','Titulo salvo com sucesso');
+		}
+
+	},
+	'salvarRodape':function(footer){
+		if(validacao()){
+			Configuracoes.update({},{$set:{rodapeComanda: footer}});
 			return new Mensage('sucesso','Titulo e rodape salvo com sucesso');
 		}
 

@@ -158,9 +158,16 @@ obterComanda = function(){
 	return historico;
 };
 
-obterItemComanda= function(item){
+obterItemComanda= function(item,codGarcomAtend,numeroMesa){
 	var itemAcom = new ItemAcom();
 	itemAcom.tipo = 'item';
+	itemAcom.codGarcomAtend = codGarcomAtend;
+
+	var func = Funcionarios.findOne({codFunc:codGarcomAtend});
+	if(func)
+		itemAcom.nomeGarcomAtend =func.nomFunc;
+
+	itemAcom.numeroMesa = numeroMesa;
 	var produto = Produtos.findOne({_id: item.idProd});
 	var observacao = Observacoes.findOne({_id: item.idObsItem});
 	if(produto){

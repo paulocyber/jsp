@@ -16,19 +16,27 @@ Template.configuracao.events({
 
 		$('#senha-cancelamento').val('');
 	},
-	'submit #form-salvar-config-comanda': function(event){
+	'submit #form-salvar-config-titulo': function(event){
 
 		event.preventDefault();
 		var title = $('#textHeader').val();
-		var footer = $('#textFooter').val();
-
 		
-		Meteor.call('salvarCfgComanda', title, footer, function (error, result) {
+		Meteor.call('salvarTitulo', title, function (error, result) {
 				mensagem(result);
 		});
 		
 
 		$('#textHeader').val('');
+	},
+	'submit #form-salvar-config-rodape': function(event){
+
+		event.preventDefault();
+		var footer = $('#textFooter').val();
+
+		Meteor.call('salvarRodape', footer, function (error, result) {
+			mensagem(result);
+		});
+
 		$('#textFooter').val('');
 	}
 });

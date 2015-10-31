@@ -17,18 +17,14 @@
 	            </div>
 	    </form>
 
-	    <form id="form-salvar-config-comanda">
+	    <form id="form-salvar-config-titulo">
 	            <!-- Primeiro Coluna -->
 	        <div class="col-md-6">
 	            <div class="form-group">
 	                <label for="textHeader">TÍTULO COMANDO: </label>
 	                <input type="text" required="required" class="custom-input form-control" id="textHeader"/>
-	            </div>   
-	            <div class="form-group">
-	                <label for="textFooter">RODAPÉ COMANDO: </label>
-	                <input type="text" required="required" class="custom-input form-control" id="textFooter"/>
-	            </div>                  
-	        </div>
+	            </div>
+            </div>
            
 	            <div class="col-md-12">
 	                <button  type="submit" class="btn btn-success ">
@@ -36,5 +32,20 @@
 	                </button>	       
 	            </div>
 	    </form>
+        <form id="form-salvar-config-rodape">
+            <!-- Primeiro Coluna -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="textFooter">RODAPÉ COMANDO: </label>
+                    <input type="text" required="required" class="custom-input form-control" id="textFooter"/>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <button  type="submit" class="btn btn-success ">
+                    <span class="glyphicon glyphicon-save"></span> SALVAR
+                </button>
+            </div>
+        </form>
     </div>
 </template>

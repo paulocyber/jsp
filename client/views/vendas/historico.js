@@ -73,30 +73,3 @@ Template.cancelamentoItemModal.events({
 });/**
  * Created by SERVIDOR on 29/10/2015.
  */
-Template.retirarTaxaServico.events({
-    'submit #form-confirmacao': function (event){
-        event.preventDefault();
-
-        var password = $('#senha-encerrar').val();
-
-        Meteor.call('equalsSenha', password,function (error, result) {
-            if(result){
-                if(Session.get('taxaServico')){
-                    Session.set('taxaServico',false);
-                }
-                else{
-                    Session.set('taxaServico',true);
-                }
-            }else{
-                mensagem(new Mensage('atencao','Senha invalida!!!'));
-            }
-        });
-        Modal.hide();
-        $('#senha-encerrar').val('');
-
-        Modal.hide();
-    },
-    'shown.bs.modal  #retirarTaxaServico': function(){
-        $('#senha-encerrar').focus();
-    }
-});
