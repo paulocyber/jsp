@@ -15,6 +15,7 @@ Template.incluirProduto.events({
         event.preventDefault();
         var venda = Session.get('selectedVenda');
 
+
         var codProd = $('#codProd').val();
         var produto = Produtos.findOne({codProd:codProd});
 
@@ -51,13 +52,10 @@ Template.incluirProduto.events({
             });
 
         }else exibirMessage('atencao','Produto NÃO EXISTE');
-
         $('#codProd').val('');
         $('#desProd').val('');
         $('#qtdProdItem').val('');
         ultimoObs=''; //Ao incluir seta o select observação para o padrão
-        focusInput(); //Ao incluir um produto da focus no primeiro input
-
     },
     'click #bloqueio':function(){
         var mesa = Session.get('selectedMesa');
@@ -82,11 +80,24 @@ Template.incluirProduto.events({
 
         /*Devido ao problema que o bootstrap não aceita modais
          multiplos tenho ocultar uma para chamar outro*/
+        var codProd = $('#codProd').val();
+        var qtdProdItem = parseInt($('#qtdProdItem').val());
+        var estadoIncluir = new EstadoIncluirProduto(codProd,qtdProdItem);
+        Session.set('estadoIncluir',estadoIncluir);
+
         Modal.hide('incluirProduto');
         Modal.show('addObservacaoModal');
+        Session.set('addObservacaoOn',true);
     },
     'shown.bs.modal .modal': function(){
         focusInput();
+        if(Session.get('addObservacaoOn')){
+            var estadoIncluir = Session.get('estadoIncluir');
+            console.log(estadoIncluir);
+            $('#codProd').val(estadoIncluir.codProd);
+            $('#qtdProdItem').val(estadoIncluir.qtdProdItem);
+            Session.set('addObservacaoOn',false);
+        }
     }
 });
 

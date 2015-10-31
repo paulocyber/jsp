@@ -5,6 +5,7 @@ Template.qtdPessoasModal.events({
       var qtdPessoas = parseInt($('#qtdPessoas').val());
       venda.qtdPessoas = qtdPessoas;
       var result = Meteor.call('addQtdPessoas',venda);
+      Session.set('selectedVenda',venda);
       Meteor.call('print', obterComanda(), function (error, result) {
           mensagem(result);
       });
