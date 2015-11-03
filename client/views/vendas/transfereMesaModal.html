@@ -1,6 +1,6 @@
-<template name='qtdPessoasModal'>
+<template name='transfereMesaModal'>
     <!-- Model de venda "-->
-    <div id="qtdPessoasModal" class="modal" role="dialog">
+    <div id="transfereMesaModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -9,20 +9,23 @@
                     <button type="button" class="close btn-close" data-dismiss="modal">
                         Fechar <span class="glyphicon glyphicon-remove"></span>
                     </button>
-                    <h4 class="modal-title">Quantas pessoas há na mesa?</h4>
+                    <h4 class="modal-title">Transferir Mesa</h4>
                 </div>
-                <form id="qtdPesForm" class="form-modal">
+                <form id="transferir-mesa-form" class="form-modal">
                     <div class="modal-body">
                         <span class="msg"></span>
                         <div class="form-group">
-                            <label for="qtdPessoas">QUANT. PESSOAS NA MESA: </label>
-                            <input type="number" required="required" class="custom-input form-control" id="qtdPessoas" />
+                            <label for="origem">ORIGEM: </label>
+                            <input type="text" required="required" class="custom-input form-control" id="origem"/>
+                            <label for="destino">DESTINO: </label>
+                            <input type="text" required="required" class="custom-input form-control" id="destino"/>
                         </div>
+
                     </div>
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-save"></span> Salvar
+                            <span class="glyphicon glyphicon-open"></span> Transferir
                         </button>
                         <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">
                             <span class="glyphicon glyphicon-remove-sign"></span> Cancel

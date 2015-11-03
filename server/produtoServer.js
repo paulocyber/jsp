@@ -9,12 +9,14 @@ Meteor.publish('Produtos', function() {
 
 
 Meteor.methods({
-  'adicionarProduto': function(data) {
+  'adicionarProduto': function(prod) {
     if(validacao()){
         if (Produtos.find({atiProd:true}).count() == configPlanoBasic.maxQtdProdutos) {      
             return  new Mensage('atencao','Quantidade de Produtos no Plano Basico no limite, faça upgrade do seu Plano!');
-        } else {
-          Produtos.insert(data);
+        } else if(Produtos.findOne({codProd:prod.codProd,atiProd:true})) {
+            return false;
+        }else{
+            Produtos.insert(prod);
             return new Mensage('sucesso','Produto adicionado com Sucesso!');
         }
     }
@@ -22,8 +24,12 @@ Meteor.methods({
 
   'desativarProduto': function(idProd) {
     if(validacao()){
-      Produtos.update({_id: idProd}, {$set: {atiProd: false}});
-      return new Mensage('aviso','Produto deletado!!!');
+        if(Vendas.findOne({atiVenda: true})){
+            return new Mensage('atencao','Há mesas abertas!!');
+        }else{
+            Produtos.update({_id: idProd}, {$set: {atiProd: false}});
+            return new Mensage('aviso','Produto deletado!!!');
+        }
     }
   }
 

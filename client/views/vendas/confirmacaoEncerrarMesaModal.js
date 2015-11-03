@@ -4,7 +4,6 @@
 Template.confirmacaoEncerrarMesaModal.events({
     'submit #form-encerrar': function (event){
         event.preventDefault();
-        console.log('entrou');
         var mesa = Session.get('selectedMesa');
         var venda = Session.get('selectedVenda');
         var historico = obterComanda();
@@ -24,7 +23,7 @@ Template.confirmacaoEncerrarMesaModal.events({
                 Modal.hide();
                 var confirm = window.confirm('Desejar imprimir cupom?');
                 if (confirm) {
-                    Meteor.call('print', obterComanda());
+                    Meteor.call('print', obterComanda(venda));
                 }
                 Meteor.call('encerrarVenda', venda, function (error, result) {
                     mensagem(result);

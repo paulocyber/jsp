@@ -1,8 +1,4 @@
 
-estadoLivre = "btn-success";
-estadoOcupado = "btn-primary";
-estadoBoqueado = "btn-danger";
-ultimoObs ='';
 
 Meteor.subscribe('MapaMesas');
 Meteor.subscribe('Observacoes');
@@ -50,7 +46,7 @@ Template.mapaMesas.events({
 
 		} else if (mesa.estado == estadoOcupado) {
 			
-			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
+			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero,atiVenda:true}));
 
 			if(Session.get('selectedVenda').taxaServico)
 				Session.set('taxaServico',true)
@@ -63,9 +59,12 @@ Template.mapaMesas.events({
 			Modal.show('incluirProduto');
 		}
 		else{
-			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero}));
+			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero,atiVenda:true}));
 			Modal.show('encerraMesaModal');
 		}
+	},
+	'click #btn-transferir-mesa':function(){
+		Modal.show('transfereMesaModal');
 	}
 });
 

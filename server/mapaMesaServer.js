@@ -5,9 +5,8 @@ Meteor.publish('Observacoes',function(){
     return Observacoes.find()
   });
 Meteor.publish('Vendas',function(){
-    return Vendas.find({atiVenda: true})
+    return Vendas.find()
   });
-
 Meteor.publish('Itens',function(){
     return Itens.find();
   });
@@ -26,7 +25,7 @@ Meteor.methods({
           venda.horAberMesa = new Date();
           venda.atiVenda = true;
           Vendas.insert(venda);
-          return new Mensage ('sucesso',"Mesa aberta com sucesso!");  
+          return new Mensage ('sucesso',"Mesa " +venda.numeroMesa+" aberta com sucesso!");
       }     
     },
     'incluirProduto': function(item){
@@ -46,7 +45,7 @@ Meteor.methods({
                 atiVenda: venda.atiVenda 
                 }
             });
-            return new Mensage('sucesso','Mesa encerrada!');
+            return new Mensage('sucesso',"Mesa " +venda.numeroMesa+" encerrada!");
         } 
     },
     'retirarTaxaServ':function(venda){
@@ -76,6 +75,19 @@ Meteor.methods({
         if(validacao()){
             Itens.update({_id: itemId},{$set:{isCancelado: true}}); 
             return new Mensage('sucesso','item cancelado');
+        }
+    },
+    'transferirMesa':function(origem,destino){
+        if(validacao()) {
+            var vendaOrigem = Vendas.findOne({numeroMesa:origem,atiVenda:true});
+            var vendaDestino = Vendas.findOne({numeroMesa:destino,atiVenda:true});
+            var itemVendaOrigem = Itens.find({idVenda:vendaOrigem._id,isCancelado:false});
+            itemVendaOrigem.forEach(function(item){
+                Itens.update({_id:item._id},{$set:{idVenda:vendaDestino._id}});
+            });
+            Vendas.remove({_id:vendaOrigem._id});
+            var mesaOrigem = MapaMesas.findOne({numero:origem});
+            MapaMesas.update({_id: mesaOrigem._id},{$set:{estado:estadoLivre}});
         }
     }
 });

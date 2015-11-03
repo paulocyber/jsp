@@ -2,8 +2,8 @@
 //Plano báscio = 3 categorias(maxCat); 30 mesas(maxMesas); 5 funcionarios(maxFuncionarios); 100 produtos cadastrados(maxQtProdutos)
 
 configPlanoBasic = new PlanosIrest(3,30,5,100);
-var estadoLivre = "btn-success"; //Botao verde do bootstrap
-var estadoOcupado = "btn-primary";
+estadoLivre = "btn-success"; //Botao verde do bootstrap
+estadoOcupado = "btn-primary";
 
 secretPass = 'asdfghjklç~]1234567!@!##$#%';
 

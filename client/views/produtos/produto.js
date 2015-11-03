@@ -25,10 +25,13 @@ Template.addProduto.events({
 		atribuirProduto();
 
 		Meteor.call('adicionarProduto', atribuirProduto(), function(error, result) {
-			mensagem(result);
+			if(result){
+				mensagem(result);
+				zeraCamposProduto();
+			}
+			else
+				mensagem(new Mensage('atencao','Código produto está em uso!'));
 		});
-
-		zeraCamposProduto();
 		ultimoCat = '';
 		$('#codProd').focus();
 

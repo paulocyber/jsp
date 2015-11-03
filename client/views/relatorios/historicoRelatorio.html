@@ -1,0 +1,74 @@
+<template name='historicoRelatorio'>
+    {{#if hasVendaMesa}}
+        <h3 class="text-center">Historico da Mesa</h3>
+        <h4 id="textHeader" class="text-center">{{histMesa.textHeader}}</h4>
+        <span for="codGarcomHist">CÓD GARÇOM:    </span><label id="codGarcomHist">{{histMesa.codGarcomAtend}}</label>
+        <br/>
+        <span for="numMesaHist">NÚMERO MESA:    </span><label id="numMesaHist">{{histMesa.numeroMesa}}</label>
+        <br/>
+        <span for="datVendaHist">DATA:    </span><label id="datVendaHist">{{histMesa.datVenda}}</label>
+        <div class="col-md-12">
+            {{> deviceRender 'tableHistRel'}}
+
+            <br/>
+            <br/>
+            <span for="vlrTotalVenda">VALOR TOTAL:    </span><label id="vlrTotalVenda">{{histMesa.vlrTotalVenda}}</label>
+            <br/>
+            <span for="vlrPorPessoa">QUANT. PESSOAS:    </span><label id="vlrPorPessoa">{{histMesa.qtdPessoas}}</label>
+            <br/>
+            <span for="vlrPorPessoa">VALOR POR PESSOA:    </span><label id="vlrPorPessoa">{{histMesa.vlrPorPessoa}}</label>
+            <br/>
+            <br/>
+            <span for="horAberMesa">HORA DE ENT.:    </span><label id="
+            horAberMesa">{{histMesa.horAberMesa}}</label>
+            <br/>
+            <span for="temPermanencia">PERMANENCIA:    </span><label id="temPermanencia">{{histMesa.temPermanencia}}</label>
+            <br/>
+            <br/>
+            <h5 id="textFooter" class="text-center">{{histMesa.textFooter}}</h5>
+            <br/>
+            <br/>
+            <button type="submit" id="print" class="btn btn-primary">
+                <span class="glyphicon glyphicon-save"></span> PRINT
+            </button>
+            <button id="bnt-cancel-item" type="button" class="btn btn-danger btn-close" data-dismiss="modal">
+                <span class="glyphicon glyphicon-remove-sign"></span> CANCEL
+            </button>
+        </div>
+    {{/if}}
+</template>
+
+<template name='tableHistRel_desktop'>
+    <table class="table font-10">
+        <thead>
+        <tr>
+            <th>Item</th><th>Descrição</th><th>V.Unit.</th><th>Quant.</th><th>V.Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each Itens}}
+            <tr>
+                <td>{{seqItem}}</td><td class="text-nowrap">{{desProd}}</td><td class="text-nowrap">{{preProd}}</td>
+                <td class="text-nowrap">{{qtdProdItem}}</td><td class="text-nowrap">{{vlrTotal}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</template>
+
+<template name='tableHistRel_phone'>
+    <table class="table font-10">
+        <thead>
+        <tr>
+            <th>Item</th><th>Descrição</th><th>Quant.</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each Itens}}
+            <tr>
+                <td>{{seqItem}}</td><td class="text-nowrap">{{desProd}}</td><td class="text-nowrap">{{qtdProdItem}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</template>

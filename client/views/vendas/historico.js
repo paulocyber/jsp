@@ -1,3 +1,7 @@
+/**
+ * Created by SERVIDOR on 29/10/2015.
+ */
+
 Template.historico.helpers({
     'hasVendaMesa':function(){
         var venda = Session.get('selectedVenda');
@@ -6,7 +10,7 @@ Template.historico.helpers({
         }else false;
     },
     'histMesa': function() {
-        var historico = obterComanda();
+        var historico = obterComanda(Session.get('selectedVenda'));
         Session.set('listaItens', historico.listItens);
         return historico;
     },
@@ -70,6 +74,4 @@ Template.cancelamentoItemModal.events({
     'shown.bs.modal  #cancelamentoItemModal': function(){
         $('#senha-cancelamento').focus();
     }
-});/**
- * Created by SERVIDOR on 29/10/2015.
- */
+});

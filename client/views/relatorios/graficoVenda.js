@@ -1,7 +1,7 @@
-Template.relatorios.helpers({
+Template.graficoVenda.helpers({
     topGenresChart : function() {
-        Meteor.call('r-vendas', function (error, result) {
-            Session.set('r-vendas', result);
+        Meteor.call('graficoVendas', function (error, result) {
+            Session.set('grafico-vendas', result);
         });
 
         return {
@@ -33,7 +33,7 @@ Template.relatorios.helpers({
             series: [{
                 type: 'pie',
                 name: 'genre',
-                data: Session.get('r-vendas')
+                data: Session.get('grafico-vendas')
             }]
         };
     }

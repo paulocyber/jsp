@@ -1,5 +1,6 @@
+
 Meteor.methods({
-	'r-vendas': function () {
+	'graficoVendas': function () {
 		if(validacao()){
 			var listProduto = Produtos.find({atiProd:true});
 			var data = new Array();

@@ -11,7 +11,7 @@ Template.register.events({
 	    			Meteor.call('desativarCreateUser', function (error, result) {
 	    				console.log(result);
 	    			});
-	        		Router.go("home"); // Redirect user if registration succeeds
+	        		Router.go("configuracao"); // Redirect user if registration succeeds
 	    		}
 		});
     }

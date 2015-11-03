@@ -14,10 +14,13 @@ Template.addFuncionario.events({
 		event.preventDefault();
 	
 		Meteor.call('adicionarFuncionario', atribuirFuncionario(), function(error, result){
-			mensagem(result);
+			if(result){
+				mensagem(result);
+				zeraCamposFunc();
+			}
+			else
+				mensagem(new Mensage('atencao','Código funcionário está em uso!'));
 		});
-
-		zeraCamposFunc();
 		$('#codFunc').focus();
     }
 });
@@ -44,7 +47,9 @@ Template.listFuncionarios.events({
 		var idFunc = this._id;
 		var confirm = window.confirm('Tem certeza que deseja DELETAR?');
 		if(confirm){
-			Meteor.call('desativarFuncionario', idFunc);
+			Meteor.call('desativarFuncionario', idFunc,function(error,result){
+				mensagem(result);
+			});
 		}
 	}
 });

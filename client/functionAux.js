@@ -1,3 +1,8 @@
+estadoLivre = "btn-success";
+estadoOcupado = "btn-primary";
+estadoBoqueado = "btn-danger";
+ultimoObs ='';
+
 new Currency('Brazil', 'BRL', 'R$ ', '%{symbol}%<value>.2f', true);
 currency = Currency.findByCode("BRL");
 
@@ -106,8 +111,7 @@ calcPermanencia = function(d){
 	return permanencia;
 };
 
-obterComanda = function(){
-	var venda = Session.get('selectedVenda');
+obterComanda = function(venda){
 	var historico = new Comanda();
 	historico.tipo = 'comanda';
 	var configuracao = Configuracoes.findOne({});
@@ -180,26 +184,6 @@ obterItemComanda= function(item,codGarcomAtend,numeroMesa){
 		itemAcom.criado  = d.tz(localidade).format(formatoHora);
 	}
 	return itemAcom;
-};
-
-modalShow = function(nameModal){
-		Session.set("modalOn", true);
-		 	// Ativa escuta por keyup no modal
-		$(document).on('keyup', function (e) {
-			if (e.keyCode == 27) { // Se clicou no ESC
-			// Despacha modal
-				Session.set('modalOn', false);
-			// Desativa escuta por keyup no modal
-				$(document).off('keyup');
-			}
-		});
-
-		$(nameModal).modal('show');
-};
-
-modalHide = function(nameModal){
-		Session.set("modalOn", false);
-		$(nameModal).modal('hide');
 };
 
 var TXSER = 0.10;
