@@ -7,7 +7,7 @@ Template.register.events({
 			if(!result)
 				mensagem(new Mensage('atencao',error.reason)); // Output error if registration fails
 			else{
-				console.log('logou');
+				Meteor.loginWithPassword(email, password);
 				Router.go("painelAdministrativo"); // Redirect user if registration succeeds
 			}
 
