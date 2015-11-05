@@ -56,6 +56,7 @@ Template.incluirProduto.events({
         $('#desProd').val('');
         $('#qtdProdItem').val('');
         ultimoObs=''; //Ao incluir seta o select observação para o padrão
+        focusInput();
     },
     'click #bloqueio':function(){
         var mesa = Session.get('selectedMesa');
@@ -74,6 +75,10 @@ Template.incluirProduto.events({
             $('#desProd').val(desProd);
         else
             $('#desProd').val('');
+    },
+    'keydown .modal':function(event){
+        event.preventDefault();
+        console.log(event.which);
     },
     'click #addObservacao': function(event) {
         event.preventDefault();

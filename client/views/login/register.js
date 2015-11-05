@@ -3,16 +3,15 @@ Template.register.events({
         event.preventDefault();
         var email = $('#email').val();
         var password =$('#senha').val();
-	    Accounts.createUser({email: email, password: password}, 
-	    	function(error){
-	    		if(error){
-	    		    mensagem(new Mensage('atencao',error.reason)); // Output error if registration fails
-	    		} else {
-	    			Meteor.call('desativarCreateUser', function (error, result) {
-	    				console.log(result);
-	    			});
-	        		Router.go("configuracao"); // Redirect user if registration succeeds
-	    		}
+		Meteor.call('resgiter',email,password, function(error,result){
+			if(!result)
+				mensagem(new Mensage('atencao',error.reason)); // Output error if registration fails
+			else{
+				console.log('logou');
+				Router.go("painelAdministrativo"); // Redirect user if registration succeeds
+			}
+
+
 		});
     }
 });

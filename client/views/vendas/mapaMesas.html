@@ -1,6 +1,8 @@
 <template name="mapaMesas">
 	  <div class="container theme-showcase" role="main">
-        <h2 class="text-center">MAPA DE MESAS</h2>
+          <div class="titulo">
+                <h3 class="text-center">MAPA DE MESAS </h3>
+          </div>
             <!-- Primeiro Coluna -->
             <div class="col-md-6">
                   {{#each geraMapaMesas}}
@@ -11,7 +13,7 @@
                     </div>
                   {{/each}}
                   <button type="button" id="btn-transferir-mesa" class="btn btn-warning col-md-12">
-                      <span class="glyphicon glyphicon-minus"></span> Transferir mesa
+                      <span class="glyphicon glyphicon-transfer"></span> Transferir mesa
                   </button>
         </div>
         <!-- Segunda Coluna -->
@@ -26,7 +28,9 @@
 
 <template name='historico'>
     {{#if hasVendaMesa}}
-        <h3 class="text-center">Historico da Mesa</h3>
+        <div class="titulo">
+            <h4 class="text-center">COMANDA </h4>
+        </div>
         <h4 id="textHeader" class="text-center">{{histMesa.textHeader}}</h4>
         <span for="codGarcomHist">CÓD GARÇOM:    </span><label id="codGarcomHist">{{histMesa.codGarcomAtend}}</label>
         <br/>
@@ -74,7 +78,12 @@
                     <td class="text-nowrap">{{qtdProdItem}}</td><td class="text-nowrap">{{vlrTotal}}</td>
                     <td>
                          <button type="button" id="btn-cancelar-item" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-minus"></span> Remove
+                            <span class="glyphicon glyphicon-minus"></span> Rem
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" id="btn-transferir-item" class="btn btn-warning btn-xs">
+                            <span class="glyphicon glyphicon-transfer"></span> item
                         </button>
                     </td>
                 </tr>
@@ -96,7 +105,12 @@
                     <td>{{seqItem}}</td><td class="text-nowrap">{{desProd}}</td><td class="text-nowrap">{{qtdProdItem}}</td>
                     <td>
                          <button type="button" id="btn-cancelar-item" class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-minus"></span> Remove
+                            <span class="glyphicon glyphicon-minus"></span> Rem
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" id="btn-transferir-item" class="btn btn-warning btn-xs">
+                            <span class="glyphicon glyphicon-transfer"></span> item
                         </button>
                     </td>
                 </tr>

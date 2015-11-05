@@ -11,7 +11,7 @@ Template.graficoVenda.helpers({
                 plotShadow: false
             },
             title: {
-                text: 'Vendas por produto'
+                text: ''
             },
             tooltip: {
                 pointFormat: '<b>{point.percentage:.1f}%</b>'

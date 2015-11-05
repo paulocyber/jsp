@@ -1,6 +1,6 @@
 Meteor.subscribe('Configuracoes');
 
-Template.configuracao.events({
+Template.painelAdministrativo.events({
 	'submit #form-salvar-config-senha-cancel': function(event){
 
 		event.preventDefault();

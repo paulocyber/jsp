@@ -8,7 +8,7 @@ Meteor.methods({
         if(Funcionarios.find({atiFunc: true}).count()==configPlanoBasic.maxFuncionarios){
           return new Mensage('atencao','Quantidade de funcionários no Plano Basico no limite, faça upgrade do seu Plano!');
         }
-        else if(Funcionarios.findOne({codFunc:func.codFunc,atiFunc:true})) {
+        else if(Funcionarios.findOne({codFunc:func.codFunc,atiFunc:true}, {fields: {_id: 1}})) {
             return false;
         }else{
           Funcionarios.insert(func);
@@ -23,7 +23,7 @@ Meteor.methods({
               return new Mensage('atencao','Há mesas abertas!!');
           }else{
               Funcionarios.update({_id: idFunc},{$set:{atiFunc: false}});
-              return new Mensage('aviso','Produto deletado!!!');
+              return new Mensage('aviso','Funcionário deletado!!!');
           }
       }
     }

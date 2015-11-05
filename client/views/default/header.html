@@ -12,28 +12,28 @@
     			</div>
     			<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
-						<li ><a class="active" href="{{pathFor route='home'}}">Home</a></li>
+						<li ><a class="active" href="{{pathFor route='home'}}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 						
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Produtos</a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-tags"></span> Produtos</a>
 							<ul class="dropdown-menu">
 								<li><a href="{{pathFor route='addProduto'}}"><span class="glyphicon glyphicon-plus"></span> Adicionar</a></li>
 								<li><a href="{{pathFor route='listProduto'}}"><span class="glyphicon glyphicon-list"></span> Listar</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Funcionários</a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Funcionários</a>
 							<ul class="dropdown-menu">
 								<li><a href="{{pathFor route='addFuncionario'}}"><span class="glyphicon glyphicon-plus"></span> Adicionar</a></li>
 								<li><a href="{{pathFor route='listFuncionarios'}}"><span class="glyphicon glyphicon-list"></span> Listar</a></li>
 							</ul>
 						</li>
-						<li><a href="{{pathFor route='mapaMesas'}}">Vendas</a></li>
+						<li><a href="{{pathFor route='mapaMesas'}}"><span class="glyphicon glyphicon-shopping-cart"></span> Vendas</a></li>
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Relatórios</a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-list-alt"></span> Relatórios</a>
 							<ul class="dropdown-menu">
-								<li><a href="{{pathFor route='reimVendas'}}">Reimprimir cupom</a></li>
-								<li><a href="{{pathFor route='graficoVenda'}}">Gráfico de vendas</a></li>
+								<li><a href="{{pathFor route='reimVendas'}}"><span class="glyphicon glyphicon-print"></span> Reimprimir cupom</a></li>
+								<li><a href="{{pathFor route='graficoVenda'}}"><span class="glyphicon glyphicon-stats"></span> Gráfico de vendas</a></li>
 							</ul>
 						</li>
 						<!--li class="dropdown">
@@ -45,7 +45,9 @@
 							</ul>
 						</li>-->
 						<li>
-							<a class="active" href="{{pathFor route='configuracao'}}">Configuração</a>
+                            {{#if isInRole 'admin'}}
+							    <a class="active" href="{{pathFor route='painelAdministrativo'}}"><span class="glyphicon glyphicon-wrench"></span> Painel Administrativo</a>
+                            {{/if}}
 						</li>
 
 					</ul>

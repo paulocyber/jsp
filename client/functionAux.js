@@ -68,7 +68,7 @@ zeraCamposProduto = function() {
 
 //posicionar o mouse no primeiro input da tela
 focusInput = function(){
-	$('input:text:visible:first').focus();	
+	$('input:text:visible:first').focus();
 };
 
 exibirMessage =function(type,m){

@@ -24,5 +24,8 @@ Template.transfereMesaModal.events({
                exibirMessage('atencao','As mesas têm que existirem');
        }else
            exibirMessage('atencao','As mesas têm que ser diferentes');
-   }
+   },
+    'shown.bs.modal  .modal': function(){
+        $('#origem').focus();
+    }
 });

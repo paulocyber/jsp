@@ -4,8 +4,14 @@ Meteor.methods({
 		var temUsuario = Meteor.users.find().count();
 		return temUsuario;
 	},
-	'desativarCreateUser':function(){
-		Accounts.config({forbidClientAccountCreation : true});
-		return 'desativou';
+	'resgiter':function(email,password){
+		id = Accounts.createUser({email: email, password: password});
+		Roles.addUsersToRoles(id, 'admin');
+		if(id)
+			return true;
+		else
+			return false;
+
+
 	}
 });
