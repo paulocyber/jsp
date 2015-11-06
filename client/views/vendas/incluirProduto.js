@@ -76,9 +76,8 @@ Template.incluirProduto.events({
         else
             $('#desProd').val('');
     },
-    'keydown .modal':function(event){
-        event.preventDefault();
-        console.log(event.which);
+    'keypress .modal':function(event){
+        
     },
     'click #addObservacao': function(event) {
         event.preventDefault();
