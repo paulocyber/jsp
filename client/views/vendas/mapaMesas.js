@@ -64,7 +64,10 @@ Template.mapaMesas.events({
 		}
 	},
 	'click #btn-transferir-mesa':function(){
-		Modal.show('transfereMesaModal');
+		Modal.show('adminRequestModal');
+		adminCallback = function() {
+			Modal.show('transfereMesaModal');
+		}
 	}
 });
 
@@ -78,8 +81,34 @@ Template.encerraMesaModal.events({
 
 	},
 	'click #encerrar':function(){
+		var mesa = Session.get('selectedMesa');
+		var venda = Session.get('selectedVenda');
+		var historico = obterComanda();
+
+		venda.temPermanencia = historico.temPermanencia;
+		venda.horSaiMesa = new Date(Session.get('horaServe'));
+		venda.vlrTotal = currency.parseStr(historico.vlrTotalVenda);
+		venda.atiVenda = false;
 		Modal.hide();
-		Modal.show('confirmacaoEncerrarMesaModal');
-	},
+
+		Modal.show('adminRequestModal');
+		adminCallback = function(){
+			Meteor.call('editarEstadoMesa', mesa._id, estadoLivre,function (error, result) {
+
+			});
+			Modal.hide();
+			var confirm = window.confirm('Desejar imprimir cupom?');
+			if (confirm) {
+				Meteor.call('print', obterComanda(venda));
+			}
+			Meteor.call('encerrarVenda', venda, function (error, result) {
+				mensagem(result);
+			});
+		};
+
+		Session.set('selectedVenda','');
+	}
 });
+
+
 

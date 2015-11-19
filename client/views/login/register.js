@@ -10,8 +10,6 @@ Template.register.events({
 				Meteor.loginWithPassword(email, password);
 				Router.go("painelAdministrativo"); // Redirect user if registration succeeds
 			}
-
-
 		});
     }
 });

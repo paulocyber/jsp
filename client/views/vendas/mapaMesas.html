@@ -1,5 +1,6 @@
 <template name="mapaMesas">
 	  <div class="container theme-showcase" role="main">
+          {{> incluirProduto}}
           <div class="titulo">
                 <h3 class="text-center">MAPA DE MESAS </h3>
           </div>
@@ -32,7 +33,7 @@
             <h4 class="text-center">COMANDA </h4>
         </div>
         <h4 id="textHeader" class="text-center">{{histMesa.textHeader}}</h4>
-        <span for="codGarcomHist">CÓD GARÇOM:    </span><label id="codGarcomHist">{{histMesa.codGarcomAtend}}</label>
+        <span for="nomeGarcom">NOME DO GARÇOM:    </span><label id="nomeGarcom">{{histMesa.nomeGarcom}}</label>
         <br/>
          <span for="numMesaHist">NÚMERO MESA:    </span><label id="numMesaHist">{{histMesa.numeroMesa}}</label>
          <br/>

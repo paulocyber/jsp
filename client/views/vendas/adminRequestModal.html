@@ -1,5 +1,5 @@
-<template name='cancelamentoItemModal'>
-    <div id="cancelamentoItemModal" class="modal fade" role="dialog">
+<template name='adminRequestModal'>
+    <div id="adminRequestModal" class="modal" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -8,19 +8,18 @@
               <button type="button" class="close btn-close" data-dismiss="modal">
               Fechar <span class="glyphicon glyphicon-remove"></span>
             </button>
-            <h4 class="modal-title">Desejar cancelar o item?</h4>
 
           </div>
           <div class="modal-body">
             <span class="msg"></span>
-            <form class="form-modal" id="formCancel">
+            <form class="form-modal" id="formAdminRequest">
                 <div class="form-group">
-                  <label for="senha-cancelamento">SENHA: </label>
-                  <input type="password" placeholder="insira a senha de cancelamento"  required="required" class="custom-input form-control" id="senha-cancelamento"/>
+                  <label for="senha">SENHA: </label>
+                  <input type="password" placeholder="insira a senha mestre"  required="required" class="custom-input form-control" id="senha"/>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" id="cancelItem" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary">
                         <span class="glyphicon glyphicon-save"></span> Sim
                     </button>
                     <button id="bnt-cancel-item" type="button" class="btn btn-danger btn-close" data-dismiss="modal">

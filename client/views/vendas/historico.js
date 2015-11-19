@@ -29,12 +29,31 @@ Template.historico.helpers({
 });
 Template.historico.events({
     'click #btn-cancelar-item': function () {
-        Session.set('itemCancelar', this._id);
-        Modal.show('cancelamentoItemModal');
+        var itemId =  this._id;
+
+        Modal.show('adminRequestModal');
+        adminCallback = function(){
+            Meteor.call('cancelarItem',itemId ,function (error, result) {mensagem(result);});
+        };
+
         $('#senha-cancelamentos').focus();
     },
     'click #btn-taxa-servico': function(event){
-        Modal.show('retirarTaxaServico');
+        Modal.show('adminRequestModal');
+        adminCallback = function(){
+            var venda = Session.get('selectedVenda');
+            if(Session.get('taxaServico')){
+                venda.taxaServico = false;
+                var result = Meteor.call('retirarTaxaServ',venda);
+                Session.set('taxaServico', false);
+            }
+            else{
+                venda.taxaServico = true;
+                var result = Meteor.call('retirarTaxaServ',venda);
+                Session.set('taxaServico', true);
+            }
+            Modal.hide();
+        }
     }
 });
 
@@ -49,29 +68,5 @@ Template.tableHist_phone.helpers({
     'Itens': function () {
         var itensHist = Session.get('listaItens');
         return itensHist;
-    }
-});
-
-Template.cancelamentoItemModal.events({
-    'submit #formCancel': function (event){
-        event.preventDefault();
-
-        var itemId = Session.get('itemCancelar');
-        var password = $('#senha-cancelamento').val();
-
-        Meteor.call('equalsSenha', password,function (error, result) {
-            if(result){
-                Meteor.call('cancelarItem',itemId ,function (error, result) {
-                    return mensagem(result);
-                });
-            }else{
-                mensagem(new Mensage('atencao','Senha invalida!!!'));
-            }
-        });
-        Modal.hide();
-        $('#senha-cancelamento').val('');
-    },
-    'shown.bs.modal  #cancelamentoItemModal': function(){
-        $('#senha-cancelamento').focus();
     }
 });

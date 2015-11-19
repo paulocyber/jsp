@@ -117,7 +117,8 @@ obterComanda = function(venda){
 	var configuracao = Configuracoes.findOne({});
 	if(venda){
 		historico.textHeader = configuracao.titleComanda;
-		historico.codGarcomAtend = venda.codGarcomAtend;
+		var func = Funcionarios.findOne({codFunc:venda.codGarcomAtend});
+		historico.nomeGarcom = func.nomFunc;
 		historico.numeroMesa = venda.numeroMesa;
 		var horAberMesa = venda.horAberMesa;
 		historico.datVenda = formatDate(horAberMesa);
