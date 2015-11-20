@@ -1,5 +1,4 @@
 
-
 Meteor.subscribe('MapaMesas');
 Meteor.subscribe('Observacoes');
 Meteor.subscribe('Vendas');
@@ -56,7 +55,7 @@ Template.mapaMesas.events({
 			Meteor.call('horaServe', function (error, result) {
 				Session.set('horaServe', result);
 			});
-			Modal.show('incluirProduto');
+			Modal.show('bloqueiarMesaModal');
 		}
 		else{
 			Session.set('selectedVenda', Vendas.findOne({numeroMesa:mesa.numero,atiVenda:true}));

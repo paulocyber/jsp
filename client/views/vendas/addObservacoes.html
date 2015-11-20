@@ -1,0 +1,28 @@
+<template name="addObservacoes">
+    <div class="container theme-showcase" role="main">
+        <div class="titulo">
+            <h3 class="text-center">CADASTRO DE OBSERVAÇÕES</h3>
+        </div>
+
+        <form>
+            <!-- Primeiro Coluna -->
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="codObs">CÓDIGO: </label>
+                    <input type="text" required="required" class="custom-input form-control" id="codObs"/>
+                </div>
+                <div class="form-group">
+                    <label for="nomObs">DESCRIÇÃO OBSERVAÇÃO: </label>
+                    <input type="text" class="custom-input form-control" id="nomObs" />
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success ">
+                    <span class="glyphicon glyphicon-save"></span> Adicionar Observação
+                </button>
+            </div>
+        </form>
+    </div>
+</template>

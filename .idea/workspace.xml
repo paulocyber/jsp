@@ -2,22 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1436aea7-e65b-42ef-bc6b-4508b8630ad6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/views/vendas/backup.html" />
-      <change type="DELETED" beforePath="C:\Users\SERVIDOR\jsp\client\views\vendas\confirmacaoEncerrarMesaModal.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\SERVIDOR\jsp\client\views\vendas\confirmacaoEncerrarMesaModal.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\SERVIDOR\jsp\client\views\vendas\retirarTaxaServico.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\SERVIDOR\jsp\client\views\vendas\retirarTaxaServico.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\SERVIDOR\jsp\client\views\vendas\senhaModal.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\SERVIDOR\jsp\client\views\vendas\senhaModal.js" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\SERVIDOR\jsp\client\views\vendas\cancelamentoItemModal.html" afterPath="$PROJECT_DIR$/client/views/vendas/adminRequestModal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/models/comandaModels.js" afterPath="$PROJECT_DIR$/lib/models/comandaModels.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/functionAux.js" afterPath="$PROJECT_DIR$/client/functionAux.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/vendas/historico.js" afterPath="$PROJECT_DIR$/client/views/vendas/historico.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/views/vendas/addObservacoes.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/views/vendas/addObservacoes.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/views/vendas/bloqueiarMesaModal.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/views/vendas/bloqueiarMesaModal.js" />
+      <change type="DELETED" beforePath="C:\Users\SERVIDOR\jsp\client\views\vendas\addObservacaoModal.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\SERVIDOR\jsp\client\views\vendas\backup.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/stylesheets/client.css" afterPath="$PROJECT_DIR$/client/stylesheets/client.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/default/header.html" afterPath="$PROJECT_DIR$/client/views/default/header.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/vendas/incluirProduto.html" afterPath="$PROJECT_DIR$/client/views/vendas/incluirProduto.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/vendas/incluirProduto.js" afterPath="$PROJECT_DIR$/client/views/vendas/incluirProduto.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/vendas/mapaMesas.html" afterPath="$PROJECT_DIR$/client/views/vendas/mapaMesas.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/vendas/mapaMesas.js" afterPath="$PROJECT_DIR$/client/views/vendas/mapaMesas.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/login/register.js" afterPath="$PROJECT_DIR$/client/views/login/register.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/vendas/transfereMesaModal.html" afterPath="$PROJECT_DIR$/client/views/vendas/transfereMesaModal.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/models/models.js" afterPath="$PROJECT_DIR$/lib/models/models.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/registerServer.js" afterPath="$PROJECT_DIR$/server/registerServer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/routers/routers.js" afterPath="$PROJECT_DIR$/lib/routers/routers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jsp.iws" />
@@ -39,51 +38,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="register.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/views/login/register.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="impressaoServer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/impressaoServer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mapaMesas.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/views/vendas/mapaMesas.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="101" column="45" selection-start-line="101" selection-start-column="45" selection-end-line="101" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="mapaMesas.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/views/vendas/mapaMesas.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-2.6153846">
-              <caret line="4" column="30" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="38" />
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="incluirProduto.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="incluirProduto.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/views/vendas/incluirProduto.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/models/models.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="incluirProduto.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/views/vendas/incluirProduto.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54761904">
-              <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+            <state vertical-scroll-proportion="-18.307692">
+              <caret line="30" column="113" selection-start-line="30" selection-start-column="107" selection-end-line="30" selection-end-column="113" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/views/default/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.461538">
+              <caret line="34" column="76" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addFuncionario.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/views/funcionario/addFuncionario.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addObservacoes.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/views/vendas/addObservacoes.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.1923075">
+              <caret line="11" column="103" selection-start-line="11" selection-start-column="97" selection-end-line="11" selection-end-column="103" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addObservacoes.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/views/vendas/addObservacoes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5743243">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#45#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="funcionario.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/views/funcionario/funcionario.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routers.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/routers/routers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -94,8 +145,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Html5" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -105,10 +156,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/models/produtoModel.js" />
-        <option value="$PROJECT_DIR$/lib/models/itemModel.js" />
-        <option value="$PROJECT_DIR$/server/funcaoVariaveisAux.js" />
-        <option value="$PROJECT_DIR$/server/produtoServer.js" />
         <option value="$PROJECT_DIR$/client/views/vendas/senhaModal.html" />
         <option value="$PROJECT_DIR$/client/views/vendas/senhaModal.js" />
         <option value="$PROJECT_DIR$/client/views/relatorios/relatorios.html" />
@@ -119,11 +166,9 @@
         <option value="$PROJECT_DIR$/server/relatorioServer.js" />
         <option value="$PROJECT_DIR$/client/views/vendas/qtdPessoasModal.js" />
         <option value="$PROJECT_DIR$/client/views/relatorios/historicoRelatorio.js" />
-        <option value="$PROJECT_DIR$/lib/models/models.js" />
         <option value="$PROJECT_DIR$/client/views/relatorios/reimVendas.js" />
         <option value="$PROJECT_DIR$/server/funcionarioServer.js" />
         <option value="$PROJECT_DIR$/client/views/vendas/encerraMesaModal.html" />
-        <option value="$PROJECT_DIR$/client/stylesheets/client.css" />
         <option value="$PROJECT_DIR$/client/views/produtos/listProduto.html" />
         <option value="$PROJECT_DIR$/client/views/funcionario/listFuncionarios.html" />
         <option value="$PROJECT_DIR$/client/views/funcionario/addFuncionario.html" />
@@ -131,31 +176,37 @@
         <option value="$PROJECT_DIR$/client/views/configuracao/configuracao.html" />
         <option value="$PROJECT_DIR$/client/views/painelAdministrativo/configuracao.html" />
         <option value="$PROJECT_DIR$/client/views/vendas/tansfereMesaModal.js" />
-        <option value="$PROJECT_DIR$/client/views/default/header.html" />
         <option value="$PROJECT_DIR$/client/views/painelAdministrativo/painelAdministrativo.js" />
         <option value="$PROJECT_DIR$/client/views/painelAdministrativo/painelAdministrativo.html" />
-        <option value="$PROJECT_DIR$/server/registerServer.js" />
         <option value="$PROJECT_DIR$/client/views/relatorios/reimVendas.html" />
         <option value="$PROJECT_DIR$/client/views/relatorios/historicoRelatorio.html" />
         <option value="$PROJECT_DIR$/client/views/relatorios/graficoVenda.js" />
         <option value="$PROJECT_DIR$/client/views/relatorios/graficoVenda.html" />
-        <option value="$PROJECT_DIR$/lib/routers/routers.js" />
-        <option value="$PROJECT_DIR$/client/views/vendas/incluirProduto.js" />
         <option value="$PROJECT_DIR$/lib/func/adminRequest.js" />
         <option value="$PROJECT_DIR$/client/views/vendas/cancelamentoItemModal.html" />
         <option value="$PROJECT_DIR$/lib/adminRequest/adminRequest.js" />
         <option value="$PROJECT_DIR$/client/views/vendas/confirmacaoEncerrarMesaModal.js" />
         <option value="$PROJECT_DIR$/client/views/vendas/historico.js" />
-        <option value="$PROJECT_DIR$/client/views/vendas/mapaMesas.js" />
         <option value="$PROJECT_DIR$/client/views/vendas/adminRequestModal.html" />
         <option value="$PROJECT_DIR$/client/views/vendas/transfereMesaModal.html" />
         <option value="$PROJECT_DIR$/client/views/vendas/adminRequestModal.js" />
         <option value="$PROJECT_DIR$/client/views/login/register.js" />
         <option value="$PROJECT_DIR$/lib/models/comandaModels.js" />
         <option value="$PROJECT_DIR$/client/functionAux.js" />
-        <option value="$PROJECT_DIR$/client/views/vendas/mapaMesas.html" />
         <option value="$PROJECT_DIR$/client/views/vendas/backup.html" />
+        <option value="$PROJECT_DIR$/client/views/vendas/bloqueiarMesaModal.js" />
+        <option value="$PROJECT_DIR$/client/views/vendas/bloqueiarMesaModal.html" />
+        <option value="$PROJECT_DIR$/client/views/vendas/mapaMesas.html" />
+        <option value="$PROJECT_DIR$/client/views/vendas/mapaMesas.js" />
         <option value="$PROJECT_DIR$/client/views/vendas/incluirProduto.html" />
+        <option value="$PROJECT_DIR$/client/stylesheets/client.css" />
+        <option value="$PROJECT_DIR$/server/registerServer.js" />
+        <option value="$PROJECT_DIR$/client/views/vendas/incluirProduto.js" />
+        <option value="$PROJECT_DIR$/lib/models/models.js" />
+        <option value="$PROJECT_DIR$/client/views/default/header.html" />
+        <option value="$PROJECT_DIR$/lib/routers/routers.js" />
+        <option value="$PROJECT_DIR$/client/views/vendas/addObservacoes.html" />
+        <option value="$PROJECT_DIR$/client/views/vendas/addObservacoes.js" />
       </list>
     </option>
   </component>
@@ -196,6 +247,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -364,13 +416,56 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="funcionario" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="default" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="stylesheets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -439,7 +534,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.204375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -476,35 +571,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/views/login/register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/categoriaServer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/configuracaoServer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63182527">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/funcaoVariaveisAux.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/models/itemModel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16380656">
@@ -516,13 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.25">
           <caret line="18" column="14" selection-start-line="1" selection-start-column="3" selection-end-line="18" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/funcionario/funcionario.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.093603745">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="6" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -582,13 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/models/models.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/funcionarioServer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -601,13 +653,6 @@
         <state vertical-scroll-proportion="0.04761905">
           <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="4" selection-end-column="18" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/funcionario/addFuncionario.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.071428575">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -629,14 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43648648">
           <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/default/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5952381">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -670,14 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/produtos/addProduto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07293355">
-          <caret line="5" column="0" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/views/relatorios/graficoVenda.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2277691">
@@ -697,27 +726,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/routers/routers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/vendas/incluirProduto.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16081081">
-          <caret line="91" column="37" selection-start-line="91" selection-start-column="37" selection-end-line="91" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/registerServer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -764,38 +772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/login/register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/vendas/encerraMesaModal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61904764">
-          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/impressaoServer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/stylesheets/client.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/models/itemAcompanhamento.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -808,7 +784,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16081081">
           <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -820,35 +795,167 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/vendas/mapaMesas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.6153846">
-          <caret line="4" column="30" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/vendas/mapaMesas.js">
+    <entry file="file://$PROJECT_DIR$/server/impressaoServer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="101" column="45" selection-start-line="101" selection-start-column="45" selection-end-line="101" selection-end-column="45" />
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/vendas/backup.html">
+    <entry file="file://$PROJECT_DIR$/client/views/vendas/bloqueiarMesaModal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7745098">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="40" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.5952381">
+          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/vendas/bloqueiarMesaModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39054054">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#385#430#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/vendas/encerraMesaModal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="26" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/produtos/addProduto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7619048">
+          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="60" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/stylesheets/client.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.037037">
+          <caret line="86" column="50" selection-start-line="86" selection-start-column="50" selection-end-line="86" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/login/register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32162163">
+          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/configuracaoServer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.62027025">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/vendas/incluirProduto.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/views/vendas/incluirProduto.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54761904">
-          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+        <state vertical-scroll-proportion="-18.307692">
+          <caret line="30" column="113" selection-start-line="30" selection-start-column="107" selection-end-line="30" selection-end-column="113" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/funcionario/addFuncionario.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/registerServer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27567568">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/vendas/mapaMesas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5743243">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/vendas/mapaMesas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6153846">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/default/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.461538">
+          <caret line="34" column="76" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/routers/routers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/funcionario/funcionario.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/vendas/addObservacoes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075">
+          <caret line="11" column="103" selection-start-line="11" selection-start-column="97" selection-end-line="11" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/models.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/vendas/addObservacoes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5743243">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#45#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
