@@ -96,6 +96,10 @@ Meteor.methods({
   'addObservacao':function(obs){
         if(validacao()){
             Observacoes.insert(obs);
+            return new Mensage('sucesso','observação cadastrada');
+        }else{
+            return new Mensage('atencao','erro ao cadastrar');
         }
+
     }
 });

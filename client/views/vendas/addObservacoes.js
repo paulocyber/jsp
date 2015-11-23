@@ -1,7 +1,7 @@
 /**
  * Created by SERVIDOR on 20/11/2015.
  */
-//teste git alteraçoes
+//teste git alteraï¿½oes
 Meteor.subscribe('Funcionarios');
 
 //Helpers e Events do template addFuncionario
@@ -20,15 +20,10 @@ Template.addObservacoes.events({
         observacao.codObs = $('#codObs').val();
         observacao.nomObs = $('#nomObs').val();
 
-
-
-        Meteor.call('addObservacoes', observacao, function(error, result){
+        Meteor.call('addObservacao', observacao, function(error, result){
             if(result){
                 mensagem(result);
-
             }
-            else
-                mensagem(new Mensage('atencao','Código funcionário está em uso!'));
         });
         $('#codObs').focus();
     }
